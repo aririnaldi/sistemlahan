@@ -1,7 +1,7 @@
-<?php 
+<?php
 $id = $_GET['id'];
 include "koneksi.php";
-
+// contoh
 $sql_lahan = mysqli_query($connect,"SELECT * FROM tb_lahan WHERE id_alamat='$id' " );
 $data = mysqli_fetch_array($sql_lahan);
 $alamat = $data['alamat'];
@@ -18,7 +18,7 @@ $idalamat = $data['id_alamat'];
 					<p align="center"><label style="font-size: 23px">HASIL</label></p>
 					<hr>
 					<p align="left"><label style="font-size:20px">Alamat Lahan : <?php echo $alamat;?></label></p>
-					
+
 					<table class="table table-bordered table-hover table-striped">
 						<thead>
 							<tr>
@@ -63,8 +63,8 @@ $idalamat = $data['id_alamat'];
 							</tr>
 							<?php
 							$no=1;
-							$sql= mysqli_query($connect,"SELECT * FROM 
-								tb_lahan INNER JOIN  tb_alternatif 
+							$sql= mysqli_query($connect,"SELECT * FROM
+								tb_lahan INNER JOIN  tb_alternatif
 								WHERE id_alamat='$id' " );
 							while ( $hasil =mysqli_fetch_array($sql))
 							{
@@ -109,7 +109,7 @@ $idalamat = $data['id_alamat'];
 											$tekstur_jadi[$no] = 2;
 										}
 									}
-									
+
 									//Halus
 									else if($data['tekstur']=="Halus")
 									{
@@ -135,7 +135,7 @@ $idalamat = $data['id_alamat'];
 											$tekstur_jadi[$no] = 3;
 										}
 									}
-									
+
 									//Agak Halus
 									else if($data['tekstur']=="Agak Halus")
 									{
@@ -467,7 +467,7 @@ $idalamat = $data['id_alamat'];
 								}
 								?>
 								<td><?php  echo $ph_jadi[$no]; ?></td>
-								
+
 								<?php //--------- Drainase --------------------------------//
 
 									//Drainase Baik
@@ -654,7 +654,7 @@ $idalamat = $data['id_alamat'];
 								<td><?php  echo $dr_jadi[$no]; ?></td>
 
 								<?php //--------- Suhu --------------------------------//
-								
+
 									//di Suhu 1 - 14
 								if(($suhu > 0) AND ($suhu <=14 ))
 								{
@@ -994,9 +994,9 @@ $idalamat = $data['id_alamat'];
 								}
 								?>
 								<td><?php  echo $suhu_jadi[$no]; ?></td>
-								
+
 								<?php //--------- Ketinggian --------------------------------//
-								
+
 								//di Ketinggian 1 - 49
 								if(($ketinggian > 0) AND ($ketinggian < 50 ))
 								{
@@ -1310,7 +1310,7 @@ $idalamat = $data['id_alamat'];
 								}
 								?>
 								<td><?php  echo $ketinggian_jadi[$no]; ?></td>
-								
+
 								<?php //--------- Lereng --------------------------------
 
 									//di Lereng 1 - 2
@@ -1496,9 +1496,9 @@ $idalamat = $data['id_alamat'];
 								}
 								?>
 								<td><?php  echo $lereng_jadi[$no]; ?></td>
-								
+
 								<?php //------------------ Curah Hujan ------------------------
-								
+
 									//di Curah Hujan 1 - 249
 								if(($curah_hujan > 0) AND ($curah_hujan <= 249 ))
 								{
@@ -1786,7 +1786,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila1a2c1 = 1;
 					}
-					
+
 					//A1-A2 di C2 (PH)
 					$a1a2c2 = $ph_jadi[1]-$ph_jadi[2];
 					if ($a1a2c2 <=0)
@@ -1797,7 +1797,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila1a2c2 = 1;
 					}
-					
+
 					//A1-A2 di C3 (Drainase)
 					$a1a2c3 = $dr_jadi[1]-$dr_jadi[2];
 					if ($a1a2c3 <=0)
@@ -1808,7 +1808,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila1a2c3 = 1;
 					}
-					
+
 					//A1-A2 di C4 (Suhu)
 					$a1a2c4 = $suhu_jadi[1]-$suhu_jadi[2];
 					if ($a1a2c4 <=0)
@@ -1816,10 +1816,10 @@ $idalamat = $data['id_alamat'];
 						$hasila1a2c4 = 0;
 					}
 					else
-					{								
+					{
 						$hasila1a2c4 = 1;
 					}
-					
+
 					//A1-A2 di C5 (Ketinggian)
 					$a1a2c5 = $ketinggian_jadi[1]-$ketinggian_jadi[2];
 					if ($a1a2c5 <=0)
@@ -1830,7 +1830,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila1a2c5 = 1;
 					}
-					
+
 					//A1-A2 di C6 (Lereng)
 					$a1a2c6 = $lereng_jadi[1]-$lereng_jadi[2];
 					if ($a1a2c6 <=0)
@@ -1841,7 +1841,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila1a2c6 = 1;
 					}
-					
+
 					//A1-A2 di C7 (Curah Hujan)
 					$a1a2c7 = $ch_jadi[1]-$ch_jadi[2];
 					if ($a1a2c7 <=0)
@@ -1852,7 +1852,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila1a2c7 = 1;
 					}
-					
+
 					//A2-A1 di C1 (Tekstur)
 					$a2a1c1 = $tekstur_jadi[2]-$tekstur_jadi[1];
 					if ($a2a1c1 <=0)
@@ -1863,7 +1863,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila2a1c1 = 1;
 					}
-					
+
 					//A2-A1 C2 PH
 					$a2a1c2 = $ph_jadi[2]-$ph_jadi[1];
 					if ($a2a1c2 <=0)
@@ -1874,7 +1874,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila2a1c2 = 1;
 					}
-					
+
 					//A2-A1 C3 Drainase
 					$a2a1c3 = $dr_jadi[2]-$dr_jadi[1];
 					if ($a2a1c3 <=0)
@@ -1885,7 +1885,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila2a1c3 = 1;
 					}
-					
+
 					//A2-A1 C4 Suhu
 					$a2a1c4 = $suhu_jadi[2]-$suhu_jadi[1];
 					if ($a2a1c4 <=0)
@@ -1896,7 +1896,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila2a1c4 = 1;
 					}
-					
+
 					//A2-A1 C5 Ketinggian
 					$a2a1c5 = $ketinggian_jadi[2]-$ketinggian_jadi[1];
 					if ($a2a1c5 <=0)
@@ -1907,7 +1907,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila2a1c5 = 1;
 					}
-					
+
 					//A2-A1 C6 Lereng
 					$a2a1c6 = $lereng_jadi[2]-$lereng_jadi[1];
 					if ($a2a1c6 <=0)
@@ -1918,7 +1918,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila2a1c6 = 1;
 					}
-					
+
 					//C7 A2-A1 Curah Hujan
 					$a2a1c7 = $ch_jadi[2]-$ch_jadi[1];
 					if ($a2a1c7 <=0)
@@ -1929,7 +1929,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila2a1c7 = 1;
 					}
-					
+
 					//A1-A3 C1 Tekstur
 					$a1a3c1 = $tekstur_jadi[1]-$tekstur_jadi[3];
 					if ($a1a3c1 <=0)
@@ -1940,7 +1940,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila1a3c1 = 1;
 					}
-					
+
 					//A1-A3 C2 PH
 					$a1a3c2 = $ph_jadi[1]-$ph_jadi[3];
 					if ($a1a3c2 <=0)
@@ -1951,7 +1951,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila1a3c2 = 1;
 					}
-					
+
 					//A1-A3 C3 Drainase
 					$a1a3c3 = $dr_jadi[1]-$dr_jadi[3];
 					if ($a1a3c3 <=0)
@@ -1962,7 +1962,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila1a3c3 = 1;
 					}
-					
+
 					//A1-A3 C4 Suhu
 					$a1a3c4 = $suhu_jadi[1]-$suhu_jadi[3];
 					if ($a1a3c4 <=0)
@@ -1973,7 +1973,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila1a3c4 = 1;
 					}
-					
+
 					//A1-A3 C5 Ketinggian
 					$a1a3c5 = $ketinggian_jadi[1]-$ketinggian_jadi[3];
 					if ($a1a3c5 <=0)
@@ -1984,7 +1984,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila1a3c5 = 1;
 					}
-					
+
 					//A1-A3 C6 Lereng
 					$a1a3c6 = $lereng_jadi[1]-$lereng_jadi[3];
 					if ($a1a3c6 <=0)
@@ -1995,7 +1995,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila1a3c6 = 1;
 					}
-					
+
 					//A1-A3 C7 CH
 					$a1a3c7 = $ch_jadi[1]-$ch_jadi[3];
 					if ($a1a3c7 <=0)
@@ -2006,7 +2006,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila1a3c7 = 1;
 					}
-					
+
 					//A3-A1 C1 Tekstur
 					$a3a1c1 = $tekstur_jadi[3]-$tekstur_jadi[1];
 					if ($a3a1c1 <=0)
@@ -2017,7 +2017,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila3a1c1=1;
 					}
-					
+
 					//A3-A1 C2 PH
 					$a3a1c2 = $ph_jadi[3]-$ph_jadi[1];
 					if ($a3a1c2 <=0)
@@ -2028,7 +2028,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila3a1c2=1;
 					}
-					
+
 					//A3-A1 C3 Drainase
 					$a3a1c3 = $dr_jadi[3]-$dr_jadi[1];
 					if ($a3a1c3 <=0)
@@ -2039,7 +2039,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila3a1c3=1;
 					}
-					
+
 					//A3-A1 C4 Suhu
 					$a3a1c4 = $suhu_jadi[3]-$suhu_jadi[1];
 					if ($a3a1c4 <=0)
@@ -2050,7 +2050,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila3a1c4=1;
 					}
-					
+
 					//A3-A1 C5 Ketinggian
 					$a3a1c5 = $ketinggian_jadi[3]-$ketinggian_jadi[1];
 					if ($a3a1c5 <=0)
@@ -2094,7 +2094,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila1a4c1=1;
 					}
-					
+
 					//A1-A4 C2 PH
 					$a1a4c2 = $ph_jadi[1]-$ph_jadi[4];
 					if ($a1a4c2 <=0)
@@ -2105,7 +2105,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila1a4c2=1;
 					}
-					
+
 					//A1-A4 C3 Drainase
 					$a1a4c3 = $dr_jadi[1]-$dr_jadi[4];
 					if ($a1a4c3 <=0)
@@ -2116,7 +2116,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila1a4c3=1;
 					}
-					
+
 					//A1-A4 C4 Suhu
 					$a1a4c4 = $suhu_jadi[1]-$suhu_jadi[4];
 					if ($a1a4c4 <=0)
@@ -2127,7 +2127,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila1a4c4=1;
 					}
-					
+
 					//A1-A4 C5 Ketinggian
 					$a1a4c5 = $ketinggian_jadi[1]-$ketinggian_jadi[4];
 					if ($a1a4c5 <=0)
@@ -2138,7 +2138,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila1a4c5=1;
 					}
-					
+
 					//C6 Lereng
 					$a1a4c6 = $lereng_jadi[1]-$lereng_jadi[4];
 					if ($a1a4c6 <=0)
@@ -2149,7 +2149,7 @@ $idalamat = $data['id_alamat'];
 					{
 						$hasila1a4c6=1;
 					}
-					
+
 					//C7 CH
 					$a1a4c7 = $ch_jadi[1]-$ch_jadi[4];
 					if ($a1a4c7 <=0)
@@ -2162,9 +2162,9 @@ $idalamat = $data['id_alamat'];
 
 						$hasila1a4c7=1;
 					}
-					?> 
+					?>
 
-					<?php 
+					<?php
 					$a4a1c1 = $tekstur_jadi[4]-$tekstur_jadi[1];
 					if ($a4a1c1 <=0)
 					{
@@ -2800,7 +2800,7 @@ $idalamat = $data['id_alamat'];
 						$hasila4a2c7 = 1;
 					}
 
-						//A2-A5 
+						//A2-A5
 					$a2a5c1 = $tekstur_jadi[2]-$tekstur_jadi[5];
 					if ($a2a5c1 <=0)
 					{
@@ -3530,65 +3530,65 @@ $idalamat = $data['id_alamat'];
 					//Menghitung Index Prefensi Multikriteria
 					$A12 = ($hasila1a2c1+$hasila1a2c2+$hasila1a2c3+$hasila1a2c4+$hasila1a2c5+$hasila1a2c6+$hasila1a2c7)/7;
 					number_format($A12,2);
-					
+
 					$A13 = ($hasila1a3c1+$hasila1a3c2+$hasila1a3c3+$hasila1a3c4+$hasila1a3c5+$hasila1a3c6+$hasila1a3c7)/7;
 					number_format($A13,2);
-					
+
 					$A14 = ($hasila1a4c1+$hasila1a4c2+$hasila1a4c3+$hasila1a4c4+$hasila1a4c5+$hasila1a4c6+$hasila1a4c7)/7;
 					number_format($A14,2);
-					
+
 					$A15 = ($hasila1a5c1+$hasila1a5c2+$hasila1a5c3+$hasila1a5c4+$hasila1a5c5+$hasila1a5c6+$hasila1a5c7)/7;
 					number_format($A15,2);
-					
+
 					$A21 = ($hasila2a1c1+$hasila2a1c2+$hasila2a1c3+$hasila2a1c4+$hasila2a1c5+$hasila2a1c6+$hasila2a1c7)/7;
 					number_format($A21,2);
-					
+
 					$A23 = ($hasila2a3c1+$hasila2a3c2+$hasila2a3c3+$hasila2a3c4+$hasila2a3c5+$hasila2a3c6+$hasila2a3c7)/7;
 					number_format($A23,2);
-					
+
 					$A24 = ($hasila2a4c1+$hasila2a4c2+$hasila2a4c3+$hasila2a4c4+$hasila2a4c5+$hasila2a4c6+$hasila2a4c7)/7;
 					number_format($A24,2);
-					
+
 					$A25 = ($hasila2a5c1+$hasila2a5c2+$hasila2a5c3+$hasila2a5c4+$hasila2a5c5+$hasila2a5c6+$hasila2a5c7)/7;
 					number_format($A25,2);
-					
+
 					$A31 = ($hasila3a1c1+$hasila3a1c2+$hasila3a1c3+$hasila3a1c4+$hasila3a1c5+$hasila3a1c6+$hasila3a1c7);
 					number_format($A31,2);
-					
+
 					$A32 = ($hasila3a2c1+$hasila3a2c2+$hasila3a2c3+$hasila3a2c4+$hasila3a2c5+$hasila3a2c6+$hasila3a2c7)/7;
 					number_format($A32,2);
-					
+
 					$A34 = ($hasila3a4c1+$hasila3a4c2+$hasila3a4c3+$hasila3a4c4+$hasila3a4c5+$hasila3a4c6+$hasila3a4c7)/7;
 					number_format($A34,2);
-					
+
 					$A35 = ($hasila3a5c1+$hasila3a5c2+$hasila3a5c3+$hasila3a5c4+$hasila3a5c5+$hasila3a5c6+$hasila3a5c7)/7;
 					number_format($A35,2);
-					
+
 					$A41 = ($hasila4a1c1+$hasila4a1c2+$hasila4a1c3+$hasila4a1c4+$hasila4a1c5+$hasila4a1c6+$hasila4a1c7)/7;
 					number_format($A41,2);
-					
+
 					$A42 = ($hasila4a2c1+$hasila4a2c2+$hasila4a2c3+$hasila4a2c4+$hasila4a2c5+$hasila4a2c6+$hasila4a2c7)/7;
 					number_format($A42,2);
-					
+
 					$A43 = ($hasila4a3c1+$hasila4a3c2+$hasila4a3c3+$hasila4a3c4+$hasila4a3c5+$hasila4a3c6+$hasila4a3c7)/7;
 					number_format($A43,2);
-					
+
 					$A45 = ($hasila4a5c1+$hasila4a5c2+$hasila4a5c3+$hasila4a5c4+$hasila4a5c5+$hasila4a5c6+$hasila4a5c7)/7;
 					number_format($A45,2);
-					
+
 					$A51 = ($hasila5a1c1+$hasila5a1c2+$hasila5a1c3+$hasila5a1c4+$hasila5a1c5+$hasila5a1c6+$hasila5a1c7)/7;
 					number_format($A51,2);
-					
+
 					$A52 = ($hasila5a2c1+$hasila5a2c2+$hasila5a2c3+$hasila5a2c4+$hasila5a2c5+$hasila5a2c6+$hasila5a2c7)/7;
 					number_format($A52,2);
-					
+
 					$A53 = ($hasila5a3c1+$hasila5a3c2+$hasila5a3c3+$hasila5a3c4+$hasila5a3c5+$hasila5a3c6+$hasila5a3c7)/7;
 					number_format($A53,2);
-					
+
 					$A54 = ($hasila5a4c1+$hasila5a4c2+$hasila5a4c3+$hasila5a4c4+$hasila5a4c5+$hasila5a4c6+$hasila5a4c7)/7;
 					number_format($A54,2);
 					?>
-					
+
 					<br>
 					<div class="row clearfix">
 						<div class="col-md-6">
@@ -3660,7 +3660,7 @@ $idalamat = $data['id_alamat'];
 												{
 													echo "Kencur";
 												}
-												else 
+												else
 												{
 													echo "Temulawak";
 												}
@@ -3710,7 +3710,7 @@ $idalamat = $data['id_alamat'];
 											{
 												$jenis_tanaman []= "Jahe";
 											}
-											if($maks==$AN3) 
+											if($maks==$AN3)
 											{
 												$jenis_tanaman []= "Kunyit";
 											}
@@ -3722,7 +3722,7 @@ $idalamat = $data['id_alamat'];
 											{
 												$jenis_tanaman []= "Temulawak";
 											}
-											
+
 
 
 											//
@@ -3731,8 +3731,8 @@ $idalamat = $data['id_alamat'];
 												echo "<center>".$AN."</center>";
 											} ?>-->
 
-											<?php 
-											for ($i=0; $i < count($jenis_tanaman) ; $i++) { 
+											<?php
+											for ($i=0; $i < count($jenis_tanaman) ; $i++) {
 												//INI ERROR NYA
 												echo $jenis_tanaman[$i]."<br>";
 												# code...
@@ -3750,13 +3750,13 @@ $idalamat = $data['id_alamat'];
 									</tr>
 								</tbody>
 							</table>
-							
+
 							<?php
 							include "koneksi.php";
 							$sql = mysqli_query($connect,"SELECT * FROM tb_hasil WHERE idalamat=$idalamat");
 							$hasil = mysqli_fetch_array($sql);
 							$id_alamat = $hasil['idalamat'];
-							
+
 							if($id_alamat==$idalamat)
 							{
 								?>
@@ -3794,7 +3794,7 @@ $idalamat = $data['id_alamat'];
 
 									<input type="hidden" name="idalamat" value="<?php echo $idalamat;?>">
 									<input type="hidden" name="nilai" value="<?php echo $maks;?>" readonly>
-									<input type="hidden" name="jenistanaman" value="<?php echo $total_tanaman;?>" readonly> 
+									<input type="hidden" name="jenistanaman" value="<?php echo $total_tanaman;?>" readonly>
 									<input type="submit" value="Input Hasil" class="btn btn-primary" name="input">
 									<a href="?page=lahan"><input type="button" value="Kembali" class="btn btn-warning"></a>
 								</form>
@@ -3808,7 +3808,7 @@ $idalamat = $data['id_alamat'];
 		</div>
 	</div>
 </section>
-<?php 
+<?php
 if(isset($_POST['input']))
 {
 	include "koneksi.php";
