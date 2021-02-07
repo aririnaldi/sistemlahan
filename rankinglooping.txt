@@ -1,0 +1,71 @@
+<?php
+						
+						//Leaving Flow
+						$A1 = ($A12+$A13+$A14+$A15)/4;
+						$A2 = ($A21+$A23+$A24+$A25)/4;
+						$A3 = ($A31+$A32+$A34+$A35)/4;
+						$A4 = ($A41+$A42+$A43+$A45)/4;
+						$A5 = ($A51+$A52+$A53+$A54)/4;
+						
+						//Entering Flow
+						$AE1 = ($A12+$A32+$A42+$A52)/4;
+						$AE2 = ($A21+$A31+$A41+$A51)/4;
+						$AE3 = ($A13+$A23+$A43+$A53)/4;
+						$AE4 = ($A14+$A24+$A34+$A54)/4;
+						$AE5 = ($A15+$A25+$A35+$A45)/4;
+						
+						//NetFlow
+						$AN1 = $A1 - $AE1;
+						$AN2 = $A2 - $AE2;
+						$AN3 = $A3 - $AE3;
+						$AN4 = $A4 - $AE4;
+						$AN5 = $A5 - $AE5;
+						
+							$nilai = array($AN1,$AN2,$AN3,$AN4,$AN5);
+							$maksimal = max($nilai);
+							sort($nilai);
+								$jumlah=count($nilai);
+								for($x=1;$x<$jumlah;$x++)
+								{
+									$ranking = $nilai[$x];
+							
+						?>
+							<tr>
+								<td>
+								<?php
+									$t = "Tanaman".$x;
+									if($t == 'Tanaman1')
+									{
+										echo "Lengkuas";
+									}
+									else if($t == 'Tanaman2')
+									{
+										echo "Jahe";
+									}
+									else if($t == 'Tanaman3')
+									{
+										echo "Kunyit";
+									}
+									else if($t == 'Tanaman4')
+									{
+										echo "Kencur";
+									}
+									else 
+									{
+										echo "Temulawak";
+									}
+									
+								?> 
+								
+								</td>
+								<td> A<?php echo $x; ?> : <?php echo number_format($A[$x],2); ?> </td>
+								<td> A<?php echo $x; ?> : <?php echo number_format($AE[$x],2); ?> </td>
+								<td> A<?php echo $x; ?> : <?php echo number_format($AN[$x],2); ?> </td>
+								<td> <?php echo $ranking; ?> </td>
+							</tr>
+							
+							
+						</tbody>
+							<?php 
+								} 
+							?>

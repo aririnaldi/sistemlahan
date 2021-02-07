@@ -1,0 +1,108 @@
+<tbody>
+							<tr>
+								<td> Lengkuas </td>
+								<td> A1 :
+									<?php $A1 = ($A12+$A13+$A14+$A15)/4;
+									echo number_format($A1,2);
+									?>
+								</td>
+								<td> A1 :
+									<?php $A1E = ($A12+$A32+$A42+$A52)/4;
+									echo number_format($A1E,2);
+									?>
+								</td>
+								<td> A1 :
+									<?php 
+									$A1N = $A1 - $A1E;
+									echo number_format($A1N,2);
+									?>
+								</td>
+								<td> ? </td>
+							</tr>
+							
+							<tr>
+								<td> Jahe </td>
+								<td> A2 :
+									<?php $A2 = ($A21+$A23+$A24+$A25)/4;
+									echo number_format($A2,2);
+									?>
+								</td>
+								<td> A2 :
+									<?php $A2E = ($A21+$A31+$A41+$A51)/4;
+									echo number_format($A2E,2);
+									?>
+								</td>
+								<td> A2 :
+									<?php 
+									$A2N = $A2 - $A2E;
+									echo number_format($A2N,2);
+									?>
+								</td>
+								<td> ? </td>
+							</tr>
+							
+							<tr>
+								<td> Kunyit </td>
+								<td> A3 :
+									<?php $A3 = ($A31+$A32+$A34+$A35)/4;
+									echo number_format($A3,2);
+									?>
+								</td>
+								<td> A3 :
+									<?php $A3E = ($A13+$A23+$A43+$A53)/4;
+									echo number_format($A3E,2);
+									?>
+								</td>
+								<td> A3 :
+									<?php 
+									$A3N = $A3 - $A3E;
+									echo number_format($A3N,2);
+									?>
+								</td>
+								<td> ? </td>
+							</tr>
+							
+							<tr>
+								<td> Kencur </td>
+								<td> A4 :
+									<?php $A4 = ($A41+$A42+$A43+$A45)/4;
+									echo number_format($A4,2);
+									?>
+								</td>
+								<td> A4 :
+									<?php $A4E = ($A14+$A24+$A34+$A54)/4;
+									echo number_format($A4E,2);
+									?>
+								</td>
+								<td> A4 :
+									<?php 
+									$A4N = $A4 - $A4E;
+									echo number_format($A4N,2);
+									?>
+								</td>
+								<td> ? </td>
+							</tr>
+							
+							<tr>
+								<td> Temulawak </td>
+								<td> A5 :
+									<?php $A5 = ($A51+$A52+$A53+$A54)/4;
+									echo number_format($A5,2);
+									?>
+								</td>
+								<td> A5 :
+									<?php $A5E = ($A15+$A25+$A35+$A45)/4;
+									echo number_format($A5E,2);
+									?>
+								</td>
+								<td> A5 :
+									<?php 
+									$A5N = $A5 - $A5E;
+									echo number_format($A5N,2);
+									?>
+								</td>
+								<td>
+								?
+								</td>
+							</tr>
+						</tbody>
