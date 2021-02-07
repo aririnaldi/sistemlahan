@@ -1,4 +1,4 @@
-<?php 
+<?php
 @session_start();
 include "koneksi.php";
 	if(isset($_SESSION['username']) && isset($_SESSION['password']))
@@ -6,9 +6,7 @@ include "koneksi.php";
 	?>
 		<script>document.location='home.php';//alert('Silahkan login terlebih dulu')</script>
 	<?php
-	}
-	else
-	{
+	}else{
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,7 +16,7 @@ include "koneksi.php";
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>LOGIN PENENTU LAHAN TANAMAN OBAT RIMPANG</title>
     <!-- Favicon-->
-    
+
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -72,7 +70,7 @@ include "koneksi.php";
         </div>
     </div>
     <?php
-	include "koneksi.php"; 
+	include "koneksi.php";
         if(isset($_POST['submit'])){
             $user = $_POST['username'];
             $pass = $_POST['password'];
@@ -90,7 +88,7 @@ include "koneksi.php";
                 </script>";
             }
         else
-        {   
+        {
         echo "<script>
       alert('User ID atau Password Salah!');
       window.location = 'index.php';
