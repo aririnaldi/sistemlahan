@@ -1,22 +1,20 @@
 <?php
+$host = "localhost";
+$user = "root";
+$password = "dicki";
+$database = "lahan2";
 
-$host="localhost";
-$user="root";
-$password="";
-$database="lahan";
-// contoh
-
-
-$connect=mysqli_connect($host,$user,$password,$database);
-if(!$connect)
-{
-	echo "acces denied";
+$connect = mysqli_connect($host, $user, $password, $database);
+if(! $connect){
+	die("Acces denied.</br>");
 }
 
-mysqli_select_db($connect,"lahan")
-or die( "Tidak ada database ");
+$select_database = mysqli_select_db($connect, $database);
+if (! $select_database) {
+	die( "Tidak ada database.");
+}
 
 
-error_reporting();
+error_reporting(E_ALL);
 
 ?>

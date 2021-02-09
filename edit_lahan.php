@@ -10,7 +10,7 @@ $query = mysqli_query($connect,"SELECT * FROM tb_lahan WHERE id_alamat = '$id'")
 	while ($hasil = mysqli_fetch_array($query))
 	{
 ?>
-<section class="content">
+
 	<div class="row clearfix">
 		<div class="col-lg-2">
 			&nbsp;
@@ -20,16 +20,16 @@ $query = mysqli_query($connect,"SELECT * FROM tb_lahan WHERE id_alamat = '$id'")
 				<div class="header font-bold col-teal" style="text-align: center; font-size: 25px">
 					TAMBAH DATA LAHAN
 				</div>
-					
+
 				<div class="header font-bold col-teal" >
 					TAMBAH DATA
 				</div>
-				
+
 				<div class="body">
 					<form method="post"><br>
 
 						<input type="hidden" id="id_alamat" class="form-control" name="id_alamat" value="<?php echo $hasil['id_alamat']; ?>">
-                        
+
 							<div class="col-md-12">
 								<div class="form-group">
 									<label for="alamat">Alamat</label>
@@ -76,7 +76,7 @@ $query = mysqli_query($connect,"SELECT * FROM tb_lahan WHERE id_alamat = '$id'")
 								</div>
                             </div>
                         </div>
-                           
+
                             <div class="col-md-12">
                                 <div class="form-group">
                                 <label for="suhu">Suhu</label>
@@ -120,7 +120,6 @@ $query = mysqli_query($connect,"SELECT * FROM tb_lahan WHERE id_alamat = '$id'")
 			</div>
 		</div>
 	</div>	
-</section>	
 <?php
 }
 if(isset($_POST['update_alternatif']))
@@ -135,7 +134,7 @@ if(isset($_POST['update_alternatif']))
         $lereng = $_POST['lereng'];
         $curah_hujan = $_POST['curah_hujan'];
 
-        $updatelahan = mysqli_query($connect,"UPDATE tb_lahan SET 
+        $updatelahan = mysqli_query($connect,"UPDATE tb_lahan SET
 			alamat='$alamat',
 			tekstur='$tekstur',
 			ph= '$ph',
@@ -144,9 +143,9 @@ if(isset($_POST['update_alternatif']))
 			ketinggian='$ketinggian',
 			lereng='$lereng',
 			curah_hujan='$curah_hujan'
-			
+
 			WHERE id_alamat= '$id'");
-		
+
 		if($updatelahan)
 		{
 			echo "<script> alert('Update Alternatif Berhasil ...'); document.location='?page=lahan' </script>";

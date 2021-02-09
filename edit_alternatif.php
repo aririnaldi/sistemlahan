@@ -5,23 +5,23 @@ include "koneksi.php";
 @$hapus = $_POST['hapus'];
 
 $id = $_GET['id'];
-	
+
 $query = mysqli_query($connect,"SELECT * FROM tb_alternatif WHERE kode = '$id'");
 while ($hasil = mysqli_fetch_array($query))
 	{
 ?>
-<section class="content">
+
 	<div class="row clearfix">
 		<div class="col-lg-2">
 			&nbsp;
 		</div>
 		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 			<div class="card">
-				
+
 				<div class="header font-bold col-teal" style="text-align: center; font-size: 25px">
 					EDIT ALTERNATIF TANAMAN
 				</div>
-				
+
 				<div class="body">
 					<form method="post">
 						<input type="hidden" id="kode" class="form-control" name="kode" value="<?php echo $hasil['kode']; ?>">
@@ -140,7 +140,6 @@ while ($hasil = mysqli_fetch_array($query))
 			</div>
 		</div>
 	</div>
-</section>
     <?php
 	}
 		if(isset($_POST['update_alternatif']))
@@ -160,10 +159,10 @@ while ($hasil = mysqli_fetch_array($query))
             $ch_min = $_POST['ch_min'];
             $ch_max = $_POST['ch_max'];
 
-			$update = mysqli_query($connect,"UPDATE tb_alternatif SET 
-			kode='$kode', 
-			nama_tanaman='$nama_tanaman', 
-            tekstur='$tekstur', 
+			$update = mysqli_query($connect,"UPDATE tb_alternatif SET
+			kode='$kode',
+			nama_tanaman='$nama_tanaman',
+            tekstur='$tekstur',
             ph_min='$ph_min',
             ph_max= '$ph_max',
             drainase='$drainase',
@@ -176,7 +175,7 @@ while ($hasil = mysqli_fetch_array($query))
             ch_min='$ch_min',
             ch_max='$ch_max'
 			WHERE kode= '$kode'");
-                       
+
             if($update)
 			{
 				echo "<script> alert('Update Alternatif Berhasil ...'); document.location='?page=alternatif' </script>";

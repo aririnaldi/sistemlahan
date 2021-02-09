@@ -7,7 +7,8 @@ $data = mysqli_fetch_array($sql_lahan);
 $alamat = $data['alamat'];
 $idalamat = $data['id_alamat'];
 ?>
-<section class="content">
+
+
 	<div class="row clearfix">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="card">
@@ -3807,7 +3808,7 @@ $idalamat = $data['id_alamat'];
 			</div>
 		</div>
 	</div>
-</section>
+	
 <?php
 if(isset($_POST['input']))
 {

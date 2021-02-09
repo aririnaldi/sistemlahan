@@ -1,39 +1,39 @@
-<section class="content">
-	<div class="row clearfix">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<div class="card">
-				
-				<div class="header font-bold col-teal" style="text-align: center; font-size: 25px">
-					ALTERNATIF TANAMAN
-				</div>
-				
-				<div class="body" align="center">
-					
-					<p align="left">
-						<a href="?page=tambah-alternatif" class="btn btn-success p-b-10 p-r-15 font-bold">
-							TAMBAH ALTERNATIF
-						</a>
-					</p>
-					<br>
-					
+<div class="row clearfix">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div class="card">
+
+			<div class="header font-bold col-teal" style="text-align: center; font-size: 25px">
+				ALTERNATIF TANAMAN
+			</div>
+
+			<div class="body" align="center">
+
+				<p align="left">
+					<a href="?page=tambah-alternatif" class="btn btn-success p-b-10 p-r-15 font-bold">
+						TAMBAH ALTERNATIF
+					</a>
+				</p>
+				<br>
+
+				<div class="table-responsive">
 					<table class="table table-bordered table-striped table-hover js-basic-example dataTable">
 						<thead>
 							<tr>
 								<th width="10px">No</th>
-								<th style="text-align:center">Nama Tanaman</th>
-                                <th style="text-align:center">Tekstur</th>
-                                <th style="text-align:center">pH min</th>
-								<th style="text-align:center">pH max</th>
-								<th style="text-align:center">Drainase</th>
-								<th style="text-align:center">Suhu min</th>
-								<th style="text-align:center">Suhu max</th>
-								<th style="text-align:center">Ketinggian min</th>
-								<th style="text-align:center">Ketinggian max</th>
-								<th style="text-align:center">Lereng min</th>
-								<th style="text-align:center">Lereng max</th>
-								<th style="text-align:center">Curah Hujan min</th>
-								<th style="text-align:center">Curah Hujan max</th>
-								<th style="text-align:center">Aksi</th>
+								<th class="text-center">Nama Tanaman</th>
+                                <th class="text-center">Tekstur</th>
+                                <th class="text-center">pH min</th>
+								<th class="text-center">pH max</th>
+								<th class="text-center">Drainase</th>
+								<th class="text-center">Suhu min</th>
+								<th class="text-center">Suhu max</th>
+								<th class="text-center">Ketinggian min</th>
+								<th class="text-center">Ketinggian max</th>
+								<th class="text-center">Lereng min</th>
+								<th class="text-center">Lereng max</th>
+								<th class="text-center">Curah Hujan min</th>
+								<th class="text-center">Curah Hujan max</th>
+								<th class="text-center">Aksi</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -69,7 +69,7 @@
 									</center>
 								</td>
 							</tr>
-							<?php 
+							<?php
 							$no++;
 							}
 							?>
@@ -79,4 +79,4 @@
 			</div>
 		</div>
 	</div>
-</section>
+</div>
