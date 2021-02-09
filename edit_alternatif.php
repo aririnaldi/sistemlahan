@@ -1,200 +1,457 @@
 <?php
-include "koneksi.php";
 
-@$update = $_POST['update'];
-@$hapus = $_POST['hapus'];
+$tanaman_id = (int) $_GET['id'];
+if (isset($_POST["submit"])) {
+    // mulai transaction
+    mysqli_begin_transaction($connect);
 
-$id = $_GET['id'];
+    try {
+		// echo "<pre>". print_r($_POST, true)."</pre>";
+		// die();
 
-$query = mysqli_query($connect,"SELECT * FROM tb_alternatif WHERE kode = '$id'");
-while ($hasil = mysqli_fetch_array($query))
-	{
+        $continue = true;
+        $update = mysqli_query($connect, "
+            UPDATE tb_tanaman SET nama = '". addslashes($_POST['nama_tanaman']) ."' WHERE id = {$tanaman_id}
+        ");
+
+        if($update){
+            if (isset($_POST['tekstur'])) {
+				$array_id = array_column($_POST['tekstur'], 'id');
+				if (! empty($array_id)) {
+					// delete tekstur
+					$delete = mysqli_query($connect, "
+						DELETE FROM tb_bobot_tekstur WHERE id NOT IN (". implode($array_id, ',') .")
+					");
+
+					if (! $delete) {
+						$continue = false;
+					}
+				}
+
+				if ($continue) {
+					foreach ($_POST['tekstur'] as $key => $item) {
+	                    if ($continue == false) {
+	                        break;
+	                    }
+
+						if (isset($item['id'])) {
+							// save tekstur
+		                    $update = mysqli_query($connect, "
+		                        UPDATE tb_bobot_tekstur SET nama = '". $item['nama'] ."', bobot = ". (int) $item['bobot'] ." WHERE id = ". $item['id'] ."
+		                    ");
+
+		                    if (! $update) {
+		                        $continue = false;
+		                    }
+						}else{
+							// save tekstur
+		                    $tambah = mysqli_query($connect, "
+		                        INSERT INTO tb_bobot_tekstur(`tanaman_id`, `nama`, `bobot`)
+		                            SELECT DISTINCT '{$tanaman_id}', '". addslashes($item['nama']) ."', '". (int) $item['bobot'] ."'
+		                            WHERE (
+		                                SELECT COUNT(*) FROM tb_bobot_tekstur
+		                                WHERE
+		                                    tanaman_id = ". $tanaman_id ."
+											AND nama = '". addslashes($item['nama']) ."'
+		                            ) = 0
+		                    ");
+
+		                    if (! $tambah) {
+		                        $continue = false;
+		                    }
+						}
+	                }
+				}
+            }
+
+            if (isset($_POST['ph'])) {
+				$array_id = array_column($_POST['ph'], 'id');
+				if (! empty($array_id)) {
+					// delete tekstur
+					$delete = mysqli_query($connect, "
+						DELETE FROM tb_bobot_ph WHERE id NOT IN (". implode($array_id, ',') .")
+					");
+
+					if (! $delete) {
+						$continue = false;
+					}
+				}
+
+				if ($continue) {
+					foreach ($_POST['ph'] as $key => $item) {
+	                    if ($continue == false) {
+	                        break;
+	                    }
+
+						if (isset($item['id'])) {
+							// update ph
+		                    $update = mysqli_query($connect, "
+		                        UPDATE tb_bobot_ph SET min_ph = ". (int) $item['min'] .", maks_ph = ". (int) $item['maks'] .", bobot = ". (int) $item['bobot'] ." WHERE id = ". $item['id'] ."
+		                    ");
+
+		                    if (! $update) {
+		                        $continue = false;
+		                    }
+						}else{
+							// save ph
+		                    $tambah = mysqli_query($connect, "
+		                        INSERT INTO tb_bobot_ph(`tanaman_id`, `min_ph`, `maks_ph`, `bobot`)
+		                            SELECT DISTINCT '{$tanaman_id}', '". (int) $item['min'] ."', '". (int) $item['maks'] ."', '". (int) $item['bobot'] ."'
+		                            WHERE (
+		                                SELECT COUNT(*) FROM tb_bobot_ph
+		                                WHERE
+		                                    tanaman_id = ". $tanaman_id ."
+											AND min_ph = ". (int) $item['min'] ."
+											AND maks_ph = ". (int) $item['maks'] ."
+		                            ) = 0
+		                    ");
+
+		                    if (! $tambah) {
+		                        $continue = false;
+		                    }
+						}
+	                }
+				}
+            }
+
+            if (isset($_POST['drainase'])) {
+				$array_id = array_column($_POST['drainase'], 'id');
+				if (! empty($array_id)) {
+					// delete tekstur
+					$delete = mysqli_query($connect, "
+						DELETE FROM tb_bobot_drainase WHERE id NOT IN (". implode($array_id, ',') .")
+					");
+
+					if (! $delete) {
+						$continue = false;
+					}
+				}
+
+                foreach ($_POST['drainase'] as $key => $item) {
+                    if ($continue == false) {
+                        break;
+                    }
+
+					if (isset($item['id'])) {
+						// update drainase
+	                    $update = mysqli_query($connect, "
+	                        UPDATE tb_bobot_drainase SET nama = '". addslashes($item['nama']) ."', bobot = ". (int) $item['bobot'] ." WHERE id = ". $item['id'] ."
+	                    ");
+
+	                    if (! $update) {
+	                        $continue = false;
+	                    }
+
+					}else{
+						// save drainase
+	                    $tambah = mysqli_query($connect, "
+	                        INSERT INTO tb_bobot_drainase(`tanaman_id`, `nama`, `bobot`)
+	                            SELECT DISTINCT '{$tanaman_id}', '". addslashes($item['nama']) ."', '". (int) $item['bobot'] ."'
+	                            WHERE (
+	                                SELECT COUNT(*) FROM tb_bobot_drainase
+	                                WHERE
+	                                    tanaman_id = ". $tanaman_id ."
+										AND nama = '". addslashes($item['nama']) ."'
+	                            ) = 0
+	                    ");
+
+	                    if (! $tambah) {
+	                        $continue = false;
+	                    }
+					}
+                }
+            }
+
+
+            if (isset($_POST['suhu'])) {
+				$array_id = array_column($_POST['suhu'], 'id');
+				if (! empty($array_id)) {
+					// delete tekstur
+					$delete = mysqli_query($connect, "
+						DELETE FROM tb_bobot_suhu WHERE id NOT IN (". implode($array_id, ',') .")
+					");
+
+					if (! $delete) {
+						$continue = false;
+					}
+				}
+
+                foreach ($_POST['suhu'] as $key => $item) {
+                    if ($continue == false) {
+                        break;
+                    }
+
+					if (isset($item['id'])) {
+						// update suhu
+	                    $update = mysqli_query($connect, "
+	                        UPDATE tb_bobot_suhu SET min_suhu = ". (int) $item['min'] .", maks_suhu = ". (int) $item['maks'] .", bobot = ". (int) $item['bobot'] ." WHERE id = ". (int) $item['id'] ."
+	                    ");
+
+	                    if (! $update) {
+	                        $continue = false;
+	                    }
+					}else{
+						// save suhu
+	                    $tambah = mysqli_query($connect, "
+							INSERT INTO tb_bobot_suhu(`tanaman_id`, `min_suhu`, `maks_suhu`, `bobot`)
+								SELECT DISTINCT '{$tanaman_id}', '". (int) $item['min'] ."', '". (int) $item['maks'] ."', '". (int) $item['bobot'] ."'
+								WHERE (
+									SELECT COUNT(*) FROM tb_bobot_suhu
+									WHERE
+										tanaman_id = ". $tanaman_id ."
+										AND min_suhu = ". (int) $item['min'] ."
+										AND maks_suhu = ". (int) $item['maks'] ."
+								) = 0
+	                    ");
+
+	                    if (! $tambah) {
+	                        $continue = false;
+	                    }
+					}
+                }
+            }
+
+            if (isset($_POST['ketinggian'])) {
+				$array_id = array_column($_POST['ketinggian'], 'id');
+				if (! empty($array_id)) {
+					// delete tekstur
+					$delete = mysqli_query($connect, "
+						DELETE FROM tb_bobot_tinggi_lahan WHERE id NOT IN (". implode($array_id, ',') .")
+					");
+
+					if (! $delete) {
+						$continue = false;
+					}
+				}
+
+                foreach ($_POST['ketinggian'] as $key => $item) {
+                    if ($continue == false) {
+                        break;
+                    }
+
+					if (isset($item['id'])) {
+						// update ketinggian
+	                    $update = mysqli_query($connect, "
+	                        UPDATE tb_bobot_tinggi_lahan SET min_tinggi = ". (int) $item['min'] .", maks_tinggi = ". (int) $item['maks'] .", bobot = ". (int) $item['bobot'] ." WHERE id = ". (int) $item['id'] ."
+	                    ");
+
+	                    if (! $update) {
+	                        $continue = false;
+	                    }
+					}else{
+						// save ketinggian
+	                    $tambah = mysqli_query($connect, "
+	                        INSERT INTO tb_bobot_tinggi_lahan(`tanaman_id`, `min_tinggi`, `maks_tinggi`, `bobot`)
+	                            SELECT DISTINCT '{$tanaman_id}', '". (int) $item['min'] ."', '". (int) $item['maks'] ."', '". (int) $item['bobot'] ."'
+	                            WHERE (
+	                                SELECT COUNT(*) FROM tb_bobot_tinggi_lahan
+	                                WHERE
+	                                    tanaman_id = ". $tanaman_id ."
+										AND min_tinggi = ". (int) $item['min'] ."
+										AND maks_tinggi = ". (int) $item['maks'] ."
+	                            ) = 0
+	                    ");
+
+	                    if (! $tambah) {
+	                        $continue = false;
+	                    }
+					}
+                }
+            }
+
+            if (isset($_POST['lereng'])) {
+				$array_id = array_column($_POST['lereng'], 'id');
+				if (! empty($array_id)) {
+					// delete tekstur
+					$delete = mysqli_query($connect, "
+						DELETE FROM tb_bobot_lereng WHERE id NOT IN (". implode($array_id, ',') .")
+					");
+
+					if (! $delete) {
+						$continue = false;
+					}
+				}
+
+                foreach ($_POST['lereng'] as $key => $item) {
+                    if ($continue == false) {
+                        break;
+                    }
+
+					if (isset($item['id'])) {
+						// update lereng
+	                    $update = mysqli_query($connect, "
+	                        UPDATE tb_bobot_lereng SET min_lereng = ". (int) $item['min'] .", maks_lereng = ". (int) $item['maks'] .", bobot = ". (int) $item['bobot'] ." WHERE id = ". (int) $item['id'] ."
+	                    ");
+
+	                    if (! $update) {
+	                        $continue = false;
+	                    }
+					}else{
+						// save lereng
+	                    $tambah = mysqli_query($connect, "
+	                        INSERT INTO tb_bobot_lereng(`tanaman_id`, `min_lereng`, `maks_lereng`, `bobot`)
+	                            SELECT DISTINCT '{$tanaman_id}', '". (int) $item['min'] ."', '". (int) $item['maks'] ."', '". (int) $item['bobot'] ."'
+	                            WHERE (
+	                                SELECT COUNT(*) FROM tb_bobot_lereng
+	                                WHERE
+	                                    tanaman_id = ". $tanaman_id ."
+										AND min_lereng = ". (int) $item['min'] ."
+										AND maks_lereng = ". (int) $item['maks'] ."
+	                            ) = 0
+	                    ");
+
+	                    if (! $tambah) {
+	                        $continue = false;
+	                    }
+					}
+                }
+            }
+
+            if (isset($_POST['hujan'])) {
+				$array_id = array_column($_POST['hujan'], 'id');
+				if (! empty($array_id)) {
+					// delete tekstur
+					$delete = mysqli_query($connect, "
+						DELETE FROM tb_bobot_curah_hujan WHERE id NOT IN (". implode($array_id, ',') .")
+					");
+
+					if (! $delete) {
+						$continue = false;
+					}
+				}
+
+                foreach ($_POST['hujan'] as $key => $item) {
+                    if ($continue == false) {
+                        break;
+                    }
+
+					if (isset($item['id'])) {
+						// update curah hujan
+	                    $update = mysqli_query($connect, "
+	                        UPDATE tb_bobot_curah_hujan SET min_curah = ". (int) $item['min'] .", maks_curah = ". (int) $item['maks'] .", bobot = ". (int) $item['bobot'] ." WHERE id = ". (int) $item['id'] ."
+	                    ");
+
+	                    if (! $update) {
+	                        $continue = false;
+	                    }
+					}else{
+						// save curah hujan
+	                    $tambah = mysqli_query($connect, "
+	                        INSERT INTO tb_bobot_curah_hujan(`tanaman_id`, `min_curah`, `maks_curah`, `bobot`)
+	                            SELECT DISTINCT '{$tanaman_id}', '". (int) $item['min'] ."', '". (int) $item['maks'] ."', '". (int) $item['bobot'] ."'
+	                            WHERE (
+	                                SELECT COUNT(*) FROM tb_bobot_curah_hujan
+	                                WHERE
+	                                    tanaman_id = ". $tanaman_id ."
+										AND min_curah = ". (int) $item['min'] ."
+										AND maks_curah = ". (int) $item['maks'] ."
+	                            ) = 0
+	                    ");
+
+	                    if (! $tambah) {
+	                        $continue = false;
+	                    }
+					}
+                }
+            }
+
+        }else{
+            $continue = false;
+        }
+
+        if ($continue) {
+            // transaction commit
+            mysqli_commit($connect);
+
+            echo "<script> alert('Edit data alternatif berhasil ...'); document.location='?page=alternatif' </script>";
+        }else{
+            // transaction rollback
+            mysqli_rollback($connect);
+
+            echo "<script> alert('Edit data alternatif gagal ...'); </script>";
+        }
+    } catch (Exception $e) {
+        // transaction rollback
+        mysqli_rollback($connect);
+
+        echo "<script> alert('". $e->errorMessage() ."'); </script>";
+    }
+}
+
+$tanaman = [];
+$query = mysqli_query($connect, "SELECT * FROM tb_tanaman WHERE id = {$tanaman_id}");
+while ($item = mysqli_fetch_assoc($query)) {
+	$tanaman = $item;
+}
+
+// ambil data tekstur
+$array_tekstur = [];
+$query = mysqli_query($connect, "SELECT * FROM tb_bobot_tekstur WHERE tanaman_id = {$tanaman_id}");
+while ($tekstur = mysqli_fetch_assoc($query)) {
+	$array_tekstur[] = $tekstur;
+}
+
+// ambil data ph
+$array_ph = [];
+$query = mysqli_query($connect, "SELECT * FROM tb_bobot_ph WHERE tanaman_id = {$tanaman_id}");
+while ($ph = mysqli_fetch_assoc($query)) {
+	$array_ph[] = $ph;
+}
+
+// ambil data drainase
+$array_drainase = [];
+$query = mysqli_query($connect, "SELECT * FROM tb_bobot_drainase WHERE tanaman_id = {$tanaman_id}");
+while ($drainase = mysqli_fetch_assoc($query)) {
+	$array_drainase[] = $drainase;
+}
+
+// ambil data drainase
+$array_suhu = [];
+$query = mysqli_query($connect, "SELECT * FROM tb_bobot_suhu WHERE tanaman_id = {$tanaman_id}");
+while ($suhu = mysqli_fetch_assoc($query)) {
+	$array_suhu[] = $suhu;
+}
+
+// ambil data ketinggian
+$array_ketinggian = [];
+$query = mysqli_query($connect, "SELECT * FROM tb_bobot_tinggi_lahan WHERE tanaman_id = {$tanaman_id}");
+while ($tinggi = mysqli_fetch_assoc($query)) {
+	$array_ketinggian[] = $tinggi;
+}
+
+// ambil data lereng
+$array_lereng = [];
+$query = mysqli_query($connect, "SELECT * FROM tb_bobot_lereng WHERE tanaman_id = {$tanaman_id}");
+while ($lereng = mysqli_fetch_assoc($query)) {
+	$array_lereng[] = $lereng;
+}
+
+// ambil data lereng
+$array_hujan = [];
+$query = mysqli_query($connect, "SELECT * FROM tb_bobot_curah_hujan WHERE tanaman_id = {$tanaman_id}");
+while ($hujan = mysqli_fetch_assoc($query)) {
+	$array_hujan[] = $hujan;
+}
+
+// echo "<pre>". print_r($array_drainase, true)."</pre>";
+// die();
+
 ?>
 
-	<div class="row clearfix">
-		<div class="col-lg-2">
-			&nbsp;
-		</div>
-		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-			<div class="card">
-
-				<div class="header font-bold col-teal" style="text-align: center; font-size: 25px">
-					EDIT ALTERNATIF TANAMAN
-				</div>
-
-				<div class="body">
-					<form method="post">
-						<input type="hidden" id="kode" class="form-control" name="kode" value="<?php echo $hasil['kode']; ?>">
-						<div class="col-md-12">
-							<div class="form-group">
-								<label for="nama_tanaman">Nama Tanaman</label>
-								<div class="form-line">
-									<input type="text" id="nama_tanaman" class="form-control" name="nama_tanaman" value="<?php echo $hasil['nama_tanaman']; ?>">
-								</div>
-							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="form-group">
-								<label for="tekstur">Tekstur Tanah</label>
-								<div class="form-line">
-									<input type="text" id="tekstur" class="form-control" name="tekstur" value="<?php echo $hasil['tekstur']; ?>">
-								</div>
-							</div>
-						</div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                <label for="ph_min">pH Minimum</label>
-                                    <div class="form-line">
-                                        <input type="text" id="ph_min" class="form-control" name="ph_min"  value="<?php echo $hasil['ph_min']; ?>">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                <label for="ph_max">pH Maksimum</label>
-                                    <div class="form-line">
-                                        <input type="text" id="ph_max" class="form-control" name="ph_max" value="<?php echo $hasil['ph_max']; ?>">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                 <div class="form-group">
-                                 <label for="drainase">Drainase</label>
-                                     <div class="form-line">
-                                        <input type="text" id="drainase" class="form-control" name="drainase" value="<?php echo $hasil['drainase']; ?>">
-                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                <label for="suhu_min">Suhu Minimum</label>
-                                    <div class="form-line">
-                                        <input type="number" id="suhu_min" class="form-control" name="suhu_min" value="<?php echo $hasil['suhu_min']; ?>">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                <label for="suhu_max">Suhu Maksimum</label>
-                                    <div class="form-line">
-                                        <input type="number" id="suhu_max" class="form-control" name="suhu_max" value="<?php echo $hasil['suhu_max']; ?>">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                <label for="ketinggian_min">Ketinggian Minimum</label>
-                                    <div class="form-line">
-                                        <input type="number" id="ketinggian_min" class="form-control" name="ketinggian_min" value="<?php echo $hasil['ketinggian_min']; ?>">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                <label for="ketinggian_max">Ketinggian Maksimum</label>
-                                    <div class="form-line">
-                                        <input type="number" id="ketinggian_max" class="form-control" name="ketinggian_max" value="<?php echo $hasil['ketinggian_max']; ?>">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                <label for="lereng_min">Lereng Minimum</label>
-                                    <div class="form-line">
-                                        <input type="number" id="lereng_min" class="form-control" name="lereng_min" value="<?php echo $hasil['lereng_min']; ?>">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                <label for="lereng_max">Lereng Maksimum</label>
-                                    <div class="form-line">
-                                        <input type="number" id="lereng_max" class="form-control" name="lereng_max" value="<?php echo $hasil['lereng_max']; ?>">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                            <div class="form-group">
-                            <label for="ch_min">Curah Hujan Minimum</label>
-                                <div class="form-line">
-                                    <input type="number" id="ch_min" class="form-control" name="ch_min" value="<?php echo $hasil['ch_min']; ?>">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                            <label for="ch_max">Curah Hujan Maksimum</label>
-                                <div class="form-line">
-                                    <input type="number" id="ch_max" class="form-control" name="ch_max" value="<?php echo $hasil['ch_max']; ?>">
-                                </div>
-                            </div>
-                        </div>
-                            <br>
-                            <input type="submit" class="btn btn-primary m-t-3 btn-lg waves-effect font-bold" name="update_alternatif" value="UPDATE"/>
-                            <a href="?page=alternatif" class="btn btn-danger m-t-3 btn-lg waves-effect font-bold">CANCEL</a>
-					</form>
-				</div>
-			</div>
-			<div class="col-lg-2">
-				&nbsp;
-			</div>
-		</div>
-	</div>
-    <?php
-	}
-		if(isset($_POST['update_alternatif']))
-		{
-			$kode = $_POST['kode'];
-			$nama_tanaman = $_POST['nama_tanaman'];
-            $tekstur = $_POST['tekstur'];
-            $ph_min = $_POST['ph_min'];
-            $ph_max = $_POST['ph_max'];
-            $drainase = $_POST['drainase'];
-            $suhu_min = $_POST['suhu_min'];
-            $suhu_max = $_POST['suhu_max'];
-            $ketinggian_min = $_POST['ketinggian_min'];
-            $ketinggian_max = $_POST['ketinggian_max'];
-            $lereng_min = $_POST['lereng_min'];
-            $lereng_max = $_POST['lereng_max'];
-            $ch_min = $_POST['ch_min'];
-            $ch_max = $_POST['ch_max'];
-
-			$update = mysqli_query($connect,"UPDATE tb_alternatif SET
-			kode='$kode',
-			nama_tanaman='$nama_tanaman',
-            tekstur='$tekstur',
-            ph_min='$ph_min',
-            ph_max= '$ph_max',
-            drainase='$drainase',
-            suhu_min='$suhu_min',
-            suhu_max='$suhu_max',
-            ketinggian_min='$ketinggian_min',
-            ketinggian_max='$ketinggian_max',
-            lereng_min='$lereng_min',
-            lereng_max='$lereng_max',
-            ch_min='$ch_min',
-            ch_max='$ch_max'
-			WHERE kode= '$kode'");
-
-            if($update)
-			{
-				echo "<script> alert('Update Alternatif Berhasil ...'); document.location='?page=alternatif' </script>";
-			}
-			else
-			{
-				echo "<script> alert('Update Alternatif Gagal ...'); </script>";
-			}
-		}
-		else if(isset($hapus))
-		{
-			$delete = mysqli_query($connect,"DELETE FROM tb_alternatif WHERE kode = '$id'") or die(mysqli_error());
-			if($delete)
-			{
-				echo "<script> alert('Delete Alternatif Berhasil ...'); document.location='?page=alternatif' </script>";
-			}
-			else
-			{
-				echo "<script> alert('Delete Alternatif Gagal ...'); </script>";
-			}
-		}
-	?>
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h3 class="text-center font-bold col-teal">Edit DATA ALTERNATIF</h3>
+            </div>
+            <div class="header">
+                <h5 class="font-bold col-teal">EDIT DATA</h5>
+            </div>
+            <div class="body">
+                <form action="?page=edit-alternatif&id=<?= $tanaman_id ?>" method="post">
+                    <?php include "form_alternatif.php" ?>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

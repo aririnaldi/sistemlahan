@@ -11,6 +11,7 @@ switch ($page) {
     case 'alternatif'			: include "alternatif.php"; break;
     case 'tambah-alternatif'	: include "tambah_alternatif.php"; break;
     case 'edit-alternatif'		: include "edit_alternatif.php"; break;
+    case 'hapus-alternatif'		: include "hapus_alternatif.php"; break;
 
     //Lahan
     case 'lahan'				: include "lahan.php";break;

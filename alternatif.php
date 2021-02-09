@@ -1,20 +1,21 @@
+<?php
+
+include "koneksi.php";
+
+?>
+
 <div class="row clearfix">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<div class="card">
-
-			<div class="header font-bold col-teal" style="text-align: center; font-size: 25px">
-				ALTERNATIF TANAMAN
+			<div class="header">
+				<h3 class="text-center font-bold col-teal">ALTERNATIF TANAMAN</h3>
 			</div>
-
-			<div class="body" align="center">
-
-				<p align="left">
-					<a href="?page=tambah-alternatif" class="btn btn-success p-b-10 p-r-15 font-bold">
-						TAMBAH ALTERNATIF
-					</a>
-				</p>
-				<br>
-
+			<div class="header">
+				<a href="?page=tambah-alternatif" class="btn btn-success p-b-10 p-r-15 font-bold">
+					TAMBAH ALTERNATIF
+				</a>
+			</div>
+			<div class="body">
 				<div class="table-responsive">
 					<table class="table table-bordered table-striped table-hover js-basic-example dataTable">
 						<thead>
@@ -22,57 +23,111 @@
 								<th width="10px">No</th>
 								<th class="text-center">Nama Tanaman</th>
                                 <th class="text-center">Tekstur</th>
-                                <th class="text-center">pH min</th>
-								<th class="text-center">pH max</th>
+                                <th class="text-center">pH</th>
 								<th class="text-center">Drainase</th>
-								<th class="text-center">Suhu min</th>
-								<th class="text-center">Suhu max</th>
-								<th class="text-center">Ketinggian min</th>
-								<th class="text-center">Ketinggian max</th>
-								<th class="text-center">Lereng min</th>
-								<th class="text-center">Lereng max</th>
-								<th class="text-center">Curah Hujan min</th>
-								<th class="text-center">Curah Hujan max</th>
+								<th class="text-center">Suhu</th>
+								<th class="text-center">Ketinggian</th>
+								<th class="text-center">Lereng</th>
+								<th class="text-center">Curah Hujan</th>
 								<th class="text-center">Aksi</th>
 							</tr>
 						</thead>
 						<tbody>
 						<?php
-							include "koneksi.php";
-							$no=1;
-							$sql = mysqli_query($connect,"select * from tb_alternatif");
-							while($hasil = mysqli_fetch_array($sql))
-							{
-						?>
+
+						$no = 1;
+						$sql = mysqli_query($connect, "SELECT * FROM tb_tanaman");
+						while ($item = mysqli_fetch_assoc($sql)) {
+							?>
+
 							<tr>
-								<td><?php echo $no;?></td>
-								<td><?php echo $hasil['nama_tanaman'];?></td>
-								<td><?php echo $hasil['tekstur_tanaman'];?></td>
-								<td><?php echo $hasil['ph_min'];?></td>
-								<td><?php echo $hasil['ph_max'];?></td>
-								<td><?php echo $hasil['drainase'];?></td>
-								<td><?php echo $hasil['suhu_min'];?></td>
-								<td><?php echo $hasil['suhu_max'];?></td>
-								<td><?php echo $hasil['ketinggian_min'];?></td>
-								<td><?php echo $hasil['ketinggian_max'];?></td>
-								<td><?php echo $hasil['lereng_min'];?></td>
-								<td><?php echo $hasil['lereng_max'];?></td>
-								<td><?php echo $hasil['ch_min'];?></td>
-								<td><?php echo $hasil['ch_max'];?></td>
+								<td><?= $no++ ?></td>
+								<td><?= $item['nama'] ?></td>
 								<td>
-									<center>
-										<form method="post" action='?page=edit-alternatif&id=<?php echo $hasil['kode']; ?>'>
-											<input type='hidden' name='id' value="<?php echo $hasil['kode'];?>">
-											<input type="submit" name="edit" value="EDIT" class="btn btn-primary p-b-10 p-r-15 font-bold">
-											<input type="submit" onClick="return confirm('Yakin akan dihapus?');" name="hapus" value="HAPUS" class="btn btn-danger p-b-10">
-										</form>
-									</center>
+									<?php
+									// ambil data tekstur
+									$query = mysqli_query($connect, "SELECT * FROM tb_bobot_tekstur WHERE tanaman_id = {$item['id']}");
+									while ($tekstur = mysqli_fetch_assoc($query)) {
+										echo "<div>". $tekstur['nama'] ." (". $tekstur['bobot'] .")</div>";
+									}
+
+									?>
+								</td>
+								<td>
+									<?php
+									// ambil data ph
+									$query = mysqli_query($connect, "SELECT * FROM tb_bobot_ph WHERE tanaman_id = {$item['id']}");
+									while ($ph = mysqli_fetch_assoc($query)) {
+										echo "<div>". $ph['min_ph'] ." - ". $ph['maks_ph'] ." (". $ph['bobot'] .")</div>";
+									}
+
+									?>
+								</td>
+								<td>
+									<?php
+									// ambil data drainase
+									$query = mysqli_query($connect, "SELECT * FROM tb_bobot_drainase WHERE tanaman_id = {$item['id']}");
+									while ($drainase = mysqli_fetch_assoc($query)) {
+										echo "<div>". $drainase['nama'] ." (". $drainase['bobot'] .")</div>";
+									}
+
+									?>
+								</td>
+								<td>
+									<?php
+									// ambil data suhu
+									$query = mysqli_query($connect, "SELECT * FROM tb_bobot_suhu WHERE tanaman_id = {$item['id']}");
+									while ($suhu = mysqli_fetch_assoc($query)) {
+										echo "<div>". $suhu['min_suhu'] ." - ". $suhu['maks_suhu'] ." (". $suhu['bobot'] .")</div>";
+									}
+
+									?>
+								</td>
+								<td>
+									<?php
+									// ambil data ketinggian
+									$query = mysqli_query($connect, "SELECT * FROM tb_bobot_tinggi_lahan WHERE tanaman_id = {$item['id']}");
+									while ($ketinggian = mysqli_fetch_assoc($query)) {
+										echo "<div>". $ketinggian['min_tinggi'] ." - ". $ketinggian['maks_tinggi'] ." (". $ketinggian['bobot'] .")</div>";
+									}
+
+									?>
+								</td>
+								<td>
+									<?php
+									// ambil data lereng
+									$query = mysqli_query($connect, "SELECT * FROM tb_bobot_lereng WHERE tanaman_id = {$item['id']}");
+									while ($lereng = mysqli_fetch_assoc($query)) {
+										echo "<div>". $lereng['min_lereng'] ." - ". $lereng['maks_lereng'] ." (". $lereng['bobot'] .")</div>";
+									}
+
+									?>
+								</td>
+								<td>
+									<?php
+									// ambil data curah hujan
+									$query = mysqli_query($connect, "SELECT * FROM tb_bobot_curah_hujan WHERE tanaman_id = {$item['id']}");
+									while ($hujan = mysqli_fetch_assoc($query)) {
+										echo "<div>". $hujan['min_curah'] ." - ". $hujan['maks_curah'] ." (". $hujan['bobot'] .")</div>";
+									}
+
+									?>
+								</td>
+								<td>
+									<a href="?page=edit-alternatif&id=<?= $item['id'] ?>" class="btn btn-primary">Edit</a>
+									<form action="?page=hapus-alternatif" method="post" onsubmit="confirm('Yakin akan dihapus?')">
+										<input type="hidden" name="id" value="<?= $item['id'] ?>">
+										<button type="submit" class="btn btn-danger">
+											Hapus
+										</button>
+									</form>
 								</td>
 							</tr>
+
 							<?php
-							$no++;
-							}
-							?>
+						}
+
+						?>
 						</tbody>
 					</table>
 				</div>

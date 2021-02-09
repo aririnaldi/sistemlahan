@@ -2,20 +2,19 @@
     <div class="form-group">
         <label for="nama_tanaman">Nama Tanaman</label>
         <div class="form-line">
-            <input type="text" id="nama_tanaman" class="form-control" name="nama_tanaman" placeholder="Masukan Nama Tanaman" required>
+            <input type="text" id="nama_tanaman" class="form-control" name="nama_tanaman" placeholder="Masukan Nama Tanaman" value="<?= isset($tanaman) ? $tanaman['nama'] : '' ?>" required>
         </div>
     </div>
 </div>
 <div class="col-md-12">
     <div class="form-group">
         <label for="tekstur">Pembobotan Tekstur Tanah</label>
-        <?php if (isset($array_tekstur)): ?>
+        <?php if (isset($array_tekstur) && ! empty($array_tekstur)): ?>
             <?php foreach ($array_tekstur as $key => $item): ?>
-
-                <input type="hidden" name="tekstur[<?= $key ?>][id]" value="<?= $item['id'] ?>" required>
                 <div class="row" data-id="<?= $item['id'] ?>">
                     <div class="col-xs-8">
                         <div class="form-line">
+                            <input type="hidden" name="tekstur[<?= $key ?>][id]" value="<?= $item['id'] ?>" required>
                             <select name="tekstur[<?= $key ?>][nama]" class="form-control" required>
                                 <?php foreach ($pusatdata->pilihanTekstur() as $tekstur): ?>
                                     <option value="<?= $tekstur ?>" <?= ($tekstur == $item['nama']) ? "selected" : "" ?> ><?= $tekstur ?></option>
@@ -70,13 +69,12 @@
 <div class="col-md-12">
     <div class="form-group">
         <label for="ph">Pembobotan pH</label>
-        <?php if (isset($array_ph)): ?>
+        <?php if (isset($array_ph) && ! empty($array_ph)): ?>
             <?php foreach ($array_ph as $key => $item): ?>
-
-                <input type="hidden" name="ph[<?= $key ?>][id]" value="<?= $item['id'] ?>" required>
                 <div class="row" data-id="<?= $item['id'] ?>">
                     <div class="col-xs-4">
                         <div class="form-line">
+                            <input type="hidden" name="ph[<?= $key ?>][id]" value="<?= $item['id'] ?>" required>
                             <input type="number" min="0" class="form-control" name="ph[0][min]" placeholder="Masukan pH Minimum" value="<?= $item['min_ph'] ?>" required>
                         </div>
                     </div>
@@ -135,14 +133,14 @@
 <div class="col-md-12">
     <div class="form-group">
         <label for="drainase">Pembobotan Drainase</label>
-        <?php if (isset($array_drainase)): ?>
+        <?php if (isset($array_drainase) && ! empty($array_drainase)): ?>
             <?php foreach ($array_drainase as $key => $item): ?>
-                <input type="hidden" name="drainase[<?= $key ?>][id]" value="<?= $item['id'] ?>" required>
                 <div class="row" data-id="<?= $item['id'] ?>">
                     <div class="col-xs-8">
                         <div class="form-line">
+                            <input type="hidden" name="drainase[<?= $key ?>][id]" value="<?= $item['id'] ?>" required>
                             <select name="drainase[<?= $key ?>][nama]" class="form-control" required>
-                                <?php foreach ($pusatdata->pilihanDrainase() as $key => $drainase): ?>
+                                <?php foreach ($pusatdata->pilihanDrainase() as $drainase): ?>
                                     <option value="<?= $drainase ?>" <?= ($drainase == $item['nama']) ? "selected" : "" ?>><?= $drainase ?></option>
                                 <?php endforeach; ?>
                             </select>
@@ -196,23 +194,23 @@
 <div class="col-md-12">
     <div class="form-group">
         <label for="suhu">Pembobotan Suhu</label>
-        <?php if (isset($array_suhu)): ?>
+        <?php if (isset($array_suhu) && ! empty($array_suhu)): ?>
             <?php foreach ($array_suhu as $key => $item): ?>
-                <input type="hidden" name="suhu[<?= $key ?>][id]" value="<?= $item['id'] ?>" required>
                 <div class="row" data-id="<?= $item['id'] ?>">
                     <div class="col-xs-4">
                         <div class="form-line">
-                            <input type="number" min="0" class="form-control" name="suhu[0][min]" placeholder="Masukan Suhu Minimum" value="<?= $item['min_suhu'] ?>" required>
+                            <input type="hidden" name="suhu[<?= $key ?>][id]" value="<?= $item['id'] ?>" required>
+                            <input type="number" min="0" class="form-control" name="suhu[<?= $key ?>][min]" placeholder="Masukan Suhu Minimum" value="<?= $item['min_suhu'] ?>" required>
                         </div>
                     </div>
                     <div class="col-xs-4">
                         <div class="form-line">
-                            <input type="number" min="0" class="form-control" name="suhu[0][maks]" placeholder="Masukan Suhu Maksimum" value="<?= $item['maks_suhu'] ?>" required>
+                            <input type="number" min="0" class="form-control" name="suhu[<?= $key ?>][maks]" placeholder="Masukan Suhu Maksimum" value="<?= $item['maks_suhu'] ?>" required>
                         </div>
                     </div>
                     <div class="col-xs-2">
                         <div class="form-line">
-                            <input type="number" min="0" class="form-control" name="suhu[0][bobot]" placeholder="Bobot" value="<?= $item['bobot'] ?>" required>
+                            <input type="number" min="0" class="form-control" name="suhu[<?= $key ?>][bobot]" placeholder="Bobot" value="<?= $item['bobot'] ?>" required>
                         </div>
                     </div>
                     <div class="col-xs-2">
@@ -259,12 +257,12 @@
 <div class="col-md-12">
     <div class="form-group">
         <label for="ketinggian">Pembobotan Ketinggian</label>
-        <?php if (isset($array_ketinggian)): ?>
+        <?php if (isset($array_ketinggian) && ! empty($array_ketinggian)): ?>
             <?php foreach ($array_ketinggian as $key => $item): ?>
-                <input type="hidden" name="ketinggian[<?= $key ?>][id]" value="<?= $item['id'] ?>" required>
                 <div class="row" data-id="<?= $item['id'] ?>">
                     <div class="col-xs-4">
                         <div class="form-line">
+                            <input type="hidden" name="ketinggian[<?= $key ?>][id]" value="<?= $item['id'] ?>" required>
                             <input type="number" min="0" class="form-control" name="ketinggian[0][min]" placeholder="Masukan Ketinggian Lahan Minimum" value="<?= $item['min_tinggi'] ?>" required>
                         </div>
                     </div>
@@ -321,12 +319,12 @@
 <div class="col-md-12">
     <div class="form-group">
         <label for="lereng">Pembobotan Lereng</label>
-        <?php if (isset($array_lereng)): ?>
+        <?php if (isset($array_lereng) && ! empty($array_lereng)): ?>
             <?php foreach ($array_lereng as $key => $item): ?>
-                <input type="hidden" name="lereng[<?= $key ?>][id]" value="<?= $item['id'] ?>" required>
                 <div class="row" data-id="<?= $item['id'] ?>">
                     <div class="col-xs-4">
                         <div class="form-line">
+                            <input type="hidden" name="lereng[<?= $key ?>][id]" value="<?= $item['id'] ?>" required>
                             <input type="number" min="0" class="form-control" name="lereng[0][min]" placeholder="Masukan Lereng Minimum" value="<?= $item['min_lereng'] ?>" required>
                         </div>
                     </div>
@@ -384,7 +382,7 @@
 <div class="col-md-12">
     <div class="form-group">
         <label for="hujan">Pembobotan Curah Hujan</label>
-        <?php if (isset($array_hujan)): ?>
+        <?php if (isset($array_hujan) && ! empty($array_hujan)): ?>
             <?php foreach ($array_hujan as $key => $item): ?>
                 <input type="hidden" name="hujan[<?= $key ?>][id]" value="<?= $item['id'] ?>" required>
                 <div class="row" data-id="<?= $item['id'] ?>">
