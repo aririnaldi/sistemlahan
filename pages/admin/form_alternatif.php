@@ -24,7 +24,7 @@
                     </div>
                     <div class="col-xs-2">
                         <div class="form-line">
-                            <input type="number" min="0" class="form-control" name="tekstur[<?= $key ?>][bobot]" placeholder="Bobot" value="<?= $item['bobot'] ?>" required>
+                            <input type="number" step="any" min="0" class="form-control" name="tekstur[<?= $key ?>][bobot]" placeholder="Bobot" value="<?= $item['bobot'] ?>" required>
                         </div>
                     </div>
                     <div class="col-xs-2">
@@ -53,7 +53,7 @@
                 </div>
                 <div class="col-xs-2">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="tekstur[0][bobot]" placeholder="Bobot" required>
+                        <input type="number" step="any" min="0" class="form-control" name="tekstur[0][bobot]" placeholder="Bobot" required>
                     </div>
                 </div>
                 <div class="col-xs-2">
@@ -75,17 +75,17 @@
                     <div class="col-xs-4">
                         <div class="form-line">
                             <input type="hidden" name="ph[<?= $key ?>][id]" value="<?= $item['id'] ?>" required>
-                            <input type="number" min="0" class="form-control" name="ph[0][min]" placeholder="Masukan pH Minimum" value="<?= $item['min_ph'] ?>" required>
+                            <input type="number" step="any" min="0" class="form-control" name="ph[<?= $key ?>][min]" placeholder="Masukan pH Minimum" value="<?= $item['min_ph'] ?>" required>
                         </div>
                     </div>
                     <div class="col-xs-4">
                         <div class="form-line">
-                            <input type="number" min="0" class="form-control" name="ph[0][maks]" placeholder="Masukan pH Maksimum" value="<?= $item['maks_ph'] ?>" required>
+                            <input type="number" step="any" min="0" class="form-control" name="ph[<?= $key ?>][maks]" placeholder="Masukan pH Maksimum" value="<?= $item['maks_ph'] ?>" required>
                         </div>
                     </div>
                     <div class="col-xs-2">
                         <div class="form-line">
-                            <input type="number" min="0" class="form-control" name="ph[0][bobot]" placeholder="Bobot" value="<?= $item['bobot'] ?>" required>
+                            <input type="number" step="any" min="0" class="form-control" name="ph[<?= $key ?>][bobot]" placeholder="Bobot" value="<?= $item['bobot'] ?>" required>
                         </div>
                     </div>
                     <div class="col-xs-2">
@@ -107,17 +107,17 @@
             <div class="row">
                 <div class="col-xs-4">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="ph[0][min]" placeholder="Masukan pH Minimum" required>
+                        <input type="number" step="any" min="0" class="form-control" name="ph[0][min]" placeholder="Masukan pH Minimum" required>
                     </div>
                 </div>
                 <div class="col-xs-4">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="ph[0][maks]" placeholder="Masukan pH Maksimum" required>
+                        <input type="number" step="any" min="0" class="form-control" name="ph[0][maks]" placeholder="Masukan pH Maksimum" required>
                     </div>
                 </div>
                 <div class="col-xs-2">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="ph[0][bobot]" placeholder="Bobot" required>
+                        <input type="number" step="any" min="0" class="form-control" name="ph[0][bobot]" placeholder="Bobot" required>
                     </div>
                 </div>
                 <div class="col-xs-2">
@@ -148,7 +148,7 @@
                     </div>
                     <div class="col-xs-2">
                         <div class="form-line">
-                            <input type="number" min="0" class="form-control" name="drainase[<?= $key ?>][bobot]" placeholder="Bobot" value="<?= $item['bobot'] ?>" required>
+                            <input type="number" step="any" min="0" class="form-control" name="drainase[<?= $key ?>][bobot]" placeholder="Bobot" value="<?= $item['bobot'] ?>" required>
                         </div>
                     </div>
                     <div class="col-xs-2">
@@ -178,7 +178,7 @@
                 </div>
                 <div class="col-xs-2">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="drainase[0][bobot]" placeholder="Bobot" required>
+                        <input type="number" step="any" min="0" class="form-control" name="drainase[0][bobot]" placeholder="Bobot" required>
                     </div>
                 </div>
                 <div class="col-xs-2">
@@ -200,17 +200,17 @@
                     <div class="col-xs-4">
                         <div class="form-line">
                             <input type="hidden" name="suhu[<?= $key ?>][id]" value="<?= $item['id'] ?>" required>
-                            <input type="number" min="0" class="form-control" name="suhu[<?= $key ?>][min]" placeholder="Masukan Suhu Minimum" value="<?= $item['min_suhu'] ?>" required>
+                            <input type="number" step="any" min="0" class="form-control" name="suhu[<?= $key ?>][min]" placeholder="Masukan Suhu Minimum" value="<?= $item['min_suhu'] ?>" required>
                         </div>
                     </div>
                     <div class="col-xs-4">
                         <div class="form-line">
-                            <input type="number" min="0" class="form-control" name="suhu[<?= $key ?>][maks]" placeholder="Masukan Suhu Maksimum" value="<?= $item['maks_suhu'] ?>" required>
+                            <input type="number" step="any" min="0" class="form-control" name="suhu[<?= $key ?>][maks]" placeholder="Masukan Suhu Maksimum" value="<?= $item['maks_suhu'] ?>" required>
                         </div>
                     </div>
                     <div class="col-xs-2">
                         <div class="form-line">
-                            <input type="number" min="0" class="form-control" name="suhu[<?= $key ?>][bobot]" placeholder="Bobot" value="<?= $item['bobot'] ?>" required>
+                            <input type="number" step="any" min="0" class="form-control" name="suhu[<?= $key ?>][bobot]" placeholder="Bobot" value="<?= $item['bobot'] ?>" required>
                         </div>
                     </div>
                     <div class="col-xs-2">
@@ -231,17 +231,17 @@
             <div class="row">
                 <div class="col-xs-4">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="suhu[0][min]" placeholder="Masukan Suhu Minimum" required>
+                        <input type="number" step="any" min="0" class="form-control" name="suhu[0][min]" placeholder="Masukan Suhu Minimum" required>
                     </div>
                 </div>
                 <div class="col-xs-4">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="suhu[0][maks]" placeholder="Masukan Suhu Maksimum" required>
+                        <input type="number" step="any" min="0" class="form-control" name="suhu[0][maks]" placeholder="Masukan Suhu Maksimum" required>
                     </div>
                 </div>
                 <div class="col-xs-2">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="suhu[0][bobot]" placeholder="Bobot" required>
+                        <input type="number" step="any" min="0" class="form-control" name="suhu[0][bobot]" placeholder="Bobot" required>
                     </div>
                 </div>
                 <div class="col-xs-2">
@@ -263,17 +263,17 @@
                     <div class="col-xs-4">
                         <div class="form-line">
                             <input type="hidden" name="ketinggian[<?= $key ?>][id]" value="<?= $item['id'] ?>" required>
-                            <input type="number" min="0" class="form-control" name="ketinggian[0][min]" placeholder="Masukan Ketinggian Lahan Minimum" value="<?= $item['min_tinggi'] ?>" required>
+                            <input type="number" step="any" min="0" class="form-control" name="ketinggian[<?= $key ?>][min]" placeholder="Masukan Ketinggian Lahan Minimum" value="<?= $item['min_tinggi'] ?>" required>
                         </div>
                     </div>
                     <div class="col-xs-4">
                         <div class="form-line">
-                            <input type="number" min="0" class="form-control" name="ketinggian[0][maks]" placeholder="Masukan Ketinggian Lahan Maksimum" value="<?= $item['maks_tinggi'] ?>" required>
+                            <input type="number" step="any" min="0" class="form-control" name="ketinggian[<?= $key ?>][maks]" placeholder="Masukan Ketinggian Lahan Maksimum" value="<?= $item['maks_tinggi'] ?>" required>
                         </div>
                     </div>
                     <div class="col-xs-2">
                         <div class="form-line">
-                            <input type="number" min="0" class="form-control" name="ketinggian[0][bobot]" placeholder="Bobot" value="<?= $item['bobot'] ?>" required>
+                            <input type="number" step="any" min="0" class="form-control" name="ketinggian[<?= $key ?>][bobot]" placeholder="Bobot" value="<?= $item['bobot'] ?>" required>
                         </div>
                     </div>
                     <div class="col-xs-2">
@@ -293,17 +293,17 @@
             <div class="row">
                 <div class="col-xs-4">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="ketinggian[0][min]" placeholder="Masukan Ketinggian Lahan Minimum" required>
+                        <input type="number" step="any" min="0" class="form-control" name="ketinggian[0][min]" placeholder="Masukan Ketinggian Lahan Minimum" required>
                     </div>
                 </div>
                 <div class="col-xs-4">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="ketinggian[0][maks]" placeholder="Masukan Ketinggian Lahan Maksimum" required>
+                        <input type="number" step="any" min="0" class="form-control" name="ketinggian[0][maks]" placeholder="Masukan Ketinggian Lahan Maksimum" required>
                     </div>
                 </div>
                 <div class="col-xs-2">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="ketinggian[0][bobot]" placeholder="Bobot" required>
+                        <input type="number" step="any" min="0" class="form-control" name="ketinggian[0][bobot]" placeholder="Bobot" required>
                     </div>
                 </div>
                 <div class="col-xs-2">
@@ -325,17 +325,17 @@
                     <div class="col-xs-4">
                         <div class="form-line">
                             <input type="hidden" name="lereng[<?= $key ?>][id]" value="<?= $item['id'] ?>" required>
-                            <input type="number" min="0" class="form-control" name="lereng[0][min]" placeholder="Masukan Lereng Minimum" value="<?= $item['min_lereng'] ?>" required>
+                            <input type="number" step="any" min="0" class="form-control" name="lereng[<?= $key ?>][min]" placeholder="Masukan Lereng Minimum" value="<?= $item['min_lereng'] ?>" required>
                         </div>
                     </div>
                     <div class="col-xs-4">
                         <div class="form-line">
-                            <input type="number" min="0" class="form-control" name="lereng[0][maks]" placeholder="Masukan Lereng Maksimum" value="<?= $item['maks_lereng'] ?>" required>
+                            <input type="number" step="any" min="0" class="form-control" name="lereng[<?= $key ?>][maks]" placeholder="Masukan Lereng Maksimum" value="<?= $item['maks_lereng'] ?>" required>
                         </div>
                     </div>
                     <div class="col-xs-2">
                         <div class="form-line">
-                            <input type="number" min="0" class="form-control" name="lereng[0][bobot]" placeholder="Bobot" value="<?= $item['bobot'] ?>" required>
+                            <input type="number" step="any" min="0" class="form-control" name="lereng[<?= $key ?>][bobot]" placeholder="Bobot" value="<?= $item['bobot'] ?>" required>
                         </div>
                     </div>
                     <div class="col-xs-2">
@@ -356,17 +356,17 @@
             <div class="row">
                 <div class="col-xs-4">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="lereng[0][min]" placeholder="Masukan Lereng Minimum" required>
+                        <input type="number" step="any" min="0" class="form-control" name="lereng[0][min]" placeholder="Masukan Lereng Minimum" required>
                     </div>
                 </div>
                 <div class="col-xs-4">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="lereng[0][maks]" placeholder="Masukan Lereng Maksimum" required>
+                        <input type="number" step="any" min="0" class="form-control" name="lereng[0][maks]" placeholder="Masukan Lereng Maksimum" required>
                     </div>
                 </div>
                 <div class="col-xs-2">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="lereng[0][bobot]" placeholder="Bobot" required>
+                        <input type="number" step="any" min="0" class="form-control" name="lereng[0][bobot]" placeholder="Bobot" required>
                     </div>
                 </div>
                 <div class="col-xs-2">
@@ -388,17 +388,17 @@
                 <div class="row" data-id="<?= $item['id'] ?>">
                     <div class="col-xs-4">
                         <div class="form-line">
-                            <input type="number" min="0" class="form-control" name="hujan[0][min]" placeholder="Masukan Curah Hujan Minimum" value="<?= $item['min_curah'] ?>" required>
+                            <input type="number" step="any" min="0" class="form-control" name="hujan[<?= $key ?>][min]" placeholder="Masukan Curah Hujan Minimum" value="<?= $item['min_curah'] ?>" required>
                         </div>
                     </div>
                     <div class="col-xs-4">
                         <div class="form-line">
-                            <input type="number" min="0" class="form-control" name="hujan[0][maks]" placeholder="Masukan Curah Hujan Maksimum" value="<?= $item['maks_curah'] ?>" required>
+                            <input type="number" step="any" min="0" class="form-control" name="hujan[<?= $key ?>][maks]" placeholder="Masukan Curah Hujan Maksimum" value="<?= $item['maks_curah'] ?>" required>
                         </div>
                     </div>
                     <div class="col-xs-2">
                         <div class="form-line">
-                            <input type="number" min="0" class="form-control" name="hujan[0][bobot]" placeholder="Bobot" value="<?= $item['bobot'] ?>" required>
+                            <input type="number" step="any" min="0" class="form-control" name="hujan[<?= $key ?>][bobot]" placeholder="Bobot" value="<?= $item['bobot'] ?>" required>
                         </div>
                     </div>
                     <div class="col-xs-2">
@@ -419,17 +419,17 @@
             <div class="row">
                 <div class="col-xs-4">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="hujan[0][min]" placeholder="Masukan Curah Hujan Minimum" required>
+                        <input type="number" step="any" min="0" class="form-control" name="hujan[0][min]" placeholder="Masukan Curah Hujan Minimum" required>
                     </div>
                 </div>
                 <div class="col-xs-4">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="hujan[0][maks]" placeholder="Masukan Curah Hujan Maksimum" required>
+                        <input type="number" step="any" min="0" class="form-control" name="hujan[0][maks]" placeholder="Masukan Curah Hujan Maksimum" required>
                     </div>
                 </div>
                 <div class="col-xs-2">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="hujan[0][bobot]" placeholder="Bobot" required>
+                        <input type="number" step="any" min="0" class="form-control" name="hujan[0][bobot]" placeholder="Bobot" required>
                     </div>
                 </div>
                 <div class="col-xs-2">
@@ -468,7 +468,7 @@ $(function(){
                 </div>
                 <div class="col-xs-2">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="tekstur[`+ rowCount +`][bobot]" placeholder="Bobot" required>
+                        <input type="number" step="any" min="0" class="form-control" name="tekstur[`+ rowCount +`][bobot]" placeholder="Bobot" required>
                     </div>
                 </div>
                 <div class="col-xs-2">
@@ -508,17 +508,17 @@ $(function(){
             <div class="row">
                 <div class="col-xs-4">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="ph[`+ rowCount +`][min]" placeholder="Masukan pH Minimum" required>
+                        <input type="number" step="any" min="0" class="form-control" name="ph[`+ rowCount +`][min]" placeholder="Masukan pH Minimum" required>
                     </div>
                 </div>
                 <div class="col-xs-4">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="ph[`+ rowCount +`][maks]" placeholder="Masukan pH Maksimum" required>
+                        <input type="number" step="any" min="0" class="form-control" name="ph[`+ rowCount +`][maks]" placeholder="Masukan pH Maksimum" required>
                     </div>
                 </div>
                 <div class="col-xs-2">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="ph[`+ rowCount +`][bobot]" placeholder="Bobot" required>
+                        <input type="number" step="any" min="0" class="form-control" name="ph[`+ rowCount +`][bobot]" placeholder="Bobot" required>
                     </div>
                 </div>
                 <div class="col-xs-2">
@@ -567,7 +567,7 @@ $(function(){
                 </div>
                 <div class="col-xs-2">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="drainase[`+ rowCount +`][bobot]" placeholder="Bobot" required>
+                        <input type="number" step="any" min="0" class="form-control" name="drainase[`+ rowCount +`][bobot]" placeholder="Bobot" required>
                     </div>
                 </div>
                 <div class="col-xs-2">
@@ -607,17 +607,17 @@ $(function(){
             <div class="row">
                 <div class="col-xs-4">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="suhu[`+ rowCount +`][min]" placeholder="Masukan Suhu Minimum" required>
+                        <input type="number" step="any" min="0" class="form-control" name="suhu[`+ rowCount +`][min]" placeholder="Masukan Suhu Minimum" required>
                     </div>
                 </div>
                 <div class="col-xs-4">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="suhu[`+ rowCount +`][maks]" placeholder="Masukan Suhu Maksimum" required>
+                        <input type="number" step="any" min="0" class="form-control" name="suhu[`+ rowCount +`][maks]" placeholder="Masukan Suhu Maksimum" required>
                     </div>
                 </div>
                 <div class="col-xs-2">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="suhu[`+ rowCount +`][bobot]" placeholder="Bobot" required>
+                        <input type="number" step="any" min="0" class="form-control" name="suhu[`+ rowCount +`][bobot]" placeholder="Bobot" required>
                     </div>
                 </div>
                 <div class="col-xs-2">
@@ -657,17 +657,17 @@ $(function(){
             <div class="row">
                 <div class="col-xs-4">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="ketinggian[`+ rowCount +`][min]" placeholder="Masukan Ketinggian Lahan Minimum" required>
+                        <input type="number" step="any" min="0" class="form-control" name="ketinggian[`+ rowCount +`][min]" placeholder="Masukan Ketinggian Lahan Minimum" required>
                     </div>
                 </div>
                 <div class="col-xs-4">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="ketinggian[`+ rowCount +`][maks]" placeholder="Masukan Ketinggian Lahan Maksimum" required>
+                        <input type="number" step="any" min="0" class="form-control" name="ketinggian[`+ rowCount +`][maks]" placeholder="Masukan Ketinggian Lahan Maksimum" required>
                     </div>
                 </div>
                 <div class="col-xs-2">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="ketinggian[`+ rowCount +`][bobot]" placeholder="Bobot" required>
+                        <input type="number" step="any" min="0" class="form-control" name="ketinggian[`+ rowCount +`][bobot]" placeholder="Bobot" required>
                     </div>
                 </div>
                 <div class="col-xs-2">
@@ -707,17 +707,17 @@ $(function(){
             <div class="row">
                 <div class="col-xs-4">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="lereng[`+ rowCount +`][min]" placeholder="Masukan Lereng Minimum" required>
+                        <input type="number" step="any" min="0" class="form-control" name="lereng[`+ rowCount +`][min]" placeholder="Masukan Lereng Minimum" required>
                     </div>
                 </div>
                 <div class="col-xs-4">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="lereng[`+ rowCount +`][maks]" placeholder="Masukan Lereng Maksimum" required>
+                        <input type="number" step="any" min="0" class="form-control" name="lereng[`+ rowCount +`][maks]" placeholder="Masukan Lereng Maksimum" required>
                     </div>
                 </div>
                 <div class="col-xs-2">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="lereng[`+ rowCount +`][bobot]" placeholder="Bobot" required>
+                        <input type="number" step="any" min="0" class="form-control" name="lereng[`+ rowCount +`][bobot]" placeholder="Bobot" required>
                     </div>
                 </div>
                 <div class="col-xs-2">
@@ -757,17 +757,17 @@ $(function(){
             <div class="row">
                 <div class="col-xs-4">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="hujan[`+ rowCount +`][min]" placeholder="Masukan Curah Hujan Minimum" required>
+                        <input type="number" step="any" min="0" class="form-control" name="hujan[`+ rowCount +`][min]" placeholder="Masukan Curah Hujan Minimum" required>
                     </div>
                 </div>
                 <div class="col-xs-4">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="hujan[`+ rowCount +`][maks]" placeholder="Masukan Curah Hujan Maksimum" required>
+                        <input type="number" step="any" min="0" class="form-control" name="hujan[`+ rowCount +`][maks]" placeholder="Masukan Curah Hujan Maksimum" required>
                     </div>
                 </div>
                 <div class="col-xs-2">
                     <div class="form-line">
-                        <input type="number" min="0" class="form-control" name="hujan[`+ rowCount +`][bobot]" placeholder="Bobot" required>
+                        <input type="number" step="any" min="0" class="form-control" name="hujan[`+ rowCount +`][bobot]" placeholder="Bobot" required>
                     </div>
                 </div>
                 <div class="col-xs-2">

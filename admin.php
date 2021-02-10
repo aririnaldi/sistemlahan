@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 include "koneksi.php";
 require_once 'pusatdata.php';
 $pusatdata = new pusatdata;
@@ -20,7 +21,7 @@ if(!isset($_SESSION['username']) && !isset($_SESSION['password'])){
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<title>LAHAN TANAMAN OBAT RIMPANG</title>
+	<title>ADMIN APLIKASI PENENTU TANAMAN OBAT RIMPANG</title>
 
 	<!-- Jquery Core Js -->
 	<script src="plugins/jquery/jquery.min.js"></script>
@@ -65,10 +66,10 @@ if(!isset($_SESSION['username']) && !isset($_SESSION['password'])){
 			</div>
 		</div>
 
-		<?php include 'menu.php'; ?>
+		<?php include 'pages/admin/menu.php'; ?>
 	</nav>
 	<section class="content">
-	    <?php include "buka-halaman.php"; ?>
+	    <?php include "buka-halaman-admin.php"; ?>
 	</section>
 
 	<!-- Bootstrap Core Js -->

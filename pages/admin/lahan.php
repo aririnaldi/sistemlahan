@@ -27,7 +27,7 @@
                         </thead>
                         <tbody>
                         <?php
-                        include 'koneksi.php';
+
                          $no=1;
                          $sql = mysqli_query($connect,"select * from tb_lahan order by id_alamat desc");
                         while($hasil = mysqli_fetch_array($sql)){
@@ -42,22 +42,19 @@
                                 <td><?php echo $hasil['ketinggian'];?></td>
                                 <td><?php echo $hasil['lereng'];?></td>
                                 <td><?php echo $hasil['curah_hujan'];?></td>
-                                <td>
-                                    <center>
-										<a href="?page=hasil&id=<?php echo $hasil['id_alamat']; ?>" method="post" type="submit">
-											<button class="btn btn-xs btn-primary">Proses</button>
-										</a>
-									</center>
-								</td>
-								<td>
-									<center>
-                                        <form method="post" action='?page=edit-lahan&id=<?php echo $hasil['id_alamat']; ?>'>
-											<input type='hidden' name='id' value="<?php echo $hasil['id_alamat'];?>">
-											<input type="submit" name="edit" value="EDIT" class="btn btn-warning btn-xs">
-											<input type="submit" onClick="return confirm('Yakin akan dihapus?');" name="hapus" value="HAPUS" class="btn btn-danger btn-xs">
-										</form>
-                                        <br>
-                                    </center>
+                                <td class="text-center">
+                                    <a href="?page=hasil&id=<?php echo $hasil['id_alamat']; ?>"class="btn btn-xs btn-primary m-b-5 m-r-5">
+                                        Proses
+                                    </a>
+
+                                    <a href="?page=edit-lahan&id=<?php echo $hasil['id_alamat']; ?>"class="btn btn-warning btn-xs m-b-5 m-r-5">
+                                        Edit
+                                    </a>
+
+                                    <form method="post" action="?page=edit-lahan&id=<?php echo $hasil['id_alamat']; ?>">
+                                        <input type="hidden" name="id" value="<?php echo $hasil['id_alamat'];?>">
+                                        <input type="submit" onClick="return confirm('Yakin akan dihapus?');" name="hapus" value="Hapus" class="btn btn-danger btn-xs m-b-5 m-r-5">
+                                    </form>
 								</td>
 							</tr>
                          <?php

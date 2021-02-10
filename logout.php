@@ -3,6 +3,6 @@ session_start();
 session_destroy();
 ?>
 <script type="text/javascript">
-	alert('Logout Berhasil ..');
+	alert('Logout berhasil ..');
 	document.location='index.php'
 </script>

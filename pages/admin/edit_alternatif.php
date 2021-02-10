@@ -37,7 +37,7 @@ if (isset($_POST["submit"])) {
 						if (isset($item['id'])) {
 							// save tekstur
 		                    $update = mysqli_query($connect, "
-		                        UPDATE tb_bobot_tekstur SET nama = '". $item['nama'] ."', bobot = ". (int) $item['bobot'] ." WHERE id = ". $item['id'] ."
+		                        UPDATE tb_bobot_tekstur SET nama = '". $item['nama'] ."', bobot = ". (float) $item['bobot'] ." WHERE id = ". $item['id'] ."
 		                    ");
 
 		                    if (! $update) {
@@ -47,7 +47,7 @@ if (isset($_POST["submit"])) {
 							// save tekstur
 		                    $tambah = mysqli_query($connect, "
 		                        INSERT INTO tb_bobot_tekstur(`tanaman_id`, `nama`, `bobot`)
-		                            SELECT DISTINCT '{$tanaman_id}', '". addslashes($item['nama']) ."', '". (int) $item['bobot'] ."'
+		                            SELECT DISTINCT '{$tanaman_id}', '". addslashes($item['nama']) ."', '". (float) $item['bobot'] ."'
 		                            WHERE (
 		                                SELECT COUNT(*) FROM tb_bobot_tekstur
 		                                WHERE
@@ -86,7 +86,7 @@ if (isset($_POST["submit"])) {
 						if (isset($item['id'])) {
 							// update ph
 		                    $update = mysqli_query($connect, "
-		                        UPDATE tb_bobot_ph SET min_ph = ". (int) $item['min'] .", maks_ph = ". (int) $item['maks'] .", bobot = ". (int) $item['bobot'] ." WHERE id = ". $item['id'] ."
+		                        UPDATE tb_bobot_ph SET min_ph = ". (float) $item['min'] .", maks_ph = ". (float) $item['maks'] .", bobot = ". (float) $item['bobot'] ." WHERE id = ". $item['id'] ."
 		                    ");
 
 		                    if (! $update) {
@@ -96,13 +96,13 @@ if (isset($_POST["submit"])) {
 							// save ph
 		                    $tambah = mysqli_query($connect, "
 		                        INSERT INTO tb_bobot_ph(`tanaman_id`, `min_ph`, `maks_ph`, `bobot`)
-		                            SELECT DISTINCT '{$tanaman_id}', '". (int) $item['min'] ."', '". (int) $item['maks'] ."', '". (int) $item['bobot'] ."'
+		                            SELECT DISTINCT '{$tanaman_id}', '". (float) $item['min'] ."', '". (float) $item['maks'] ."', '". (float) $item['bobot'] ."'
 		                            WHERE (
 		                                SELECT COUNT(*) FROM tb_bobot_ph
 		                                WHERE
 		                                    tanaman_id = ". $tanaman_id ."
-											AND min_ph = ". (int) $item['min'] ."
-											AND maks_ph = ". (int) $item['maks'] ."
+											AND min_ph = ". (float) $item['min'] ."
+											AND maks_ph = ". (float) $item['maks'] ."
 		                            ) = 0
 		                    ");
 
@@ -135,7 +135,7 @@ if (isset($_POST["submit"])) {
 					if (isset($item['id'])) {
 						// update drainase
 	                    $update = mysqli_query($connect, "
-	                        UPDATE tb_bobot_drainase SET nama = '". addslashes($item['nama']) ."', bobot = ". (int) $item['bobot'] ." WHERE id = ". $item['id'] ."
+	                        UPDATE tb_bobot_drainase SET nama = '". addslashes($item['nama']) ."', bobot = ". (float) $item['bobot'] ." WHERE id = ". $item['id'] ."
 	                    ");
 
 	                    if (! $update) {
@@ -146,7 +146,7 @@ if (isset($_POST["submit"])) {
 						// save drainase
 	                    $tambah = mysqli_query($connect, "
 	                        INSERT INTO tb_bobot_drainase(`tanaman_id`, `nama`, `bobot`)
-	                            SELECT DISTINCT '{$tanaman_id}', '". addslashes($item['nama']) ."', '". (int) $item['bobot'] ."'
+	                            SELECT DISTINCT '{$tanaman_id}', '". addslashes($item['nama']) ."', '". (float) $item['bobot'] ."'
 	                            WHERE (
 	                                SELECT COUNT(*) FROM tb_bobot_drainase
 	                                WHERE
@@ -184,7 +184,7 @@ if (isset($_POST["submit"])) {
 					if (isset($item['id'])) {
 						// update suhu
 	                    $update = mysqli_query($connect, "
-	                        UPDATE tb_bobot_suhu SET min_suhu = ". (int) $item['min'] .", maks_suhu = ". (int) $item['maks'] .", bobot = ". (int) $item['bobot'] ." WHERE id = ". (int) $item['id'] ."
+	                        UPDATE tb_bobot_suhu SET min_suhu = ". (float) $item['min'] .", maks_suhu = ". (float) $item['maks'] .", bobot = ". (float) $item['bobot'] ." WHERE id = ". (float) $item['id'] ."
 	                    ");
 
 	                    if (! $update) {
@@ -194,13 +194,13 @@ if (isset($_POST["submit"])) {
 						// save suhu
 	                    $tambah = mysqli_query($connect, "
 							INSERT INTO tb_bobot_suhu(`tanaman_id`, `min_suhu`, `maks_suhu`, `bobot`)
-								SELECT DISTINCT '{$tanaman_id}', '". (int) $item['min'] ."', '". (int) $item['maks'] ."', '". (int) $item['bobot'] ."'
+								SELECT DISTINCT '{$tanaman_id}', '". (float) $item['min'] ."', '". (float) $item['maks'] ."', '". (float) $item['bobot'] ."'
 								WHERE (
 									SELECT COUNT(*) FROM tb_bobot_suhu
 									WHERE
 										tanaman_id = ". $tanaman_id ."
-										AND min_suhu = ". (int) $item['min'] ."
-										AND maks_suhu = ". (int) $item['maks'] ."
+										AND min_suhu = ". (float) $item['min'] ."
+										AND maks_suhu = ". (float) $item['maks'] ."
 								) = 0
 	                    ");
 
@@ -232,7 +232,7 @@ if (isset($_POST["submit"])) {
 					if (isset($item['id'])) {
 						// update ketinggian
 	                    $update = mysqli_query($connect, "
-	                        UPDATE tb_bobot_tinggi_lahan SET min_tinggi = ". (int) $item['min'] .", maks_tinggi = ". (int) $item['maks'] .", bobot = ". (int) $item['bobot'] ." WHERE id = ". (int) $item['id'] ."
+	                        UPDATE tb_bobot_tinggi_lahan SET min_tinggi = ". (float) $item['min'] .", maks_tinggi = ". (float) $item['maks'] .", bobot = ". (float) $item['bobot'] ." WHERE id = ". (float) $item['id'] ."
 	                    ");
 
 	                    if (! $update) {
@@ -242,13 +242,13 @@ if (isset($_POST["submit"])) {
 						// save ketinggian
 	                    $tambah = mysqli_query($connect, "
 	                        INSERT INTO tb_bobot_tinggi_lahan(`tanaman_id`, `min_tinggi`, `maks_tinggi`, `bobot`)
-	                            SELECT DISTINCT '{$tanaman_id}', '". (int) $item['min'] ."', '". (int) $item['maks'] ."', '". (int) $item['bobot'] ."'
+	                            SELECT DISTINCT '{$tanaman_id}', '". (float) $item['min'] ."', '". (float) $item['maks'] ."', '". (float) $item['bobot'] ."'
 	                            WHERE (
 	                                SELECT COUNT(*) FROM tb_bobot_tinggi_lahan
 	                                WHERE
 	                                    tanaman_id = ". $tanaman_id ."
-										AND min_tinggi = ". (int) $item['min'] ."
-										AND maks_tinggi = ". (int) $item['maks'] ."
+										AND min_tinggi = ". (float) $item['min'] ."
+										AND maks_tinggi = ". (float) $item['maks'] ."
 	                            ) = 0
 	                    ");
 
@@ -280,7 +280,7 @@ if (isset($_POST["submit"])) {
 					if (isset($item['id'])) {
 						// update lereng
 	                    $update = mysqli_query($connect, "
-	                        UPDATE tb_bobot_lereng SET min_lereng = ". (int) $item['min'] .", maks_lereng = ". (int) $item['maks'] .", bobot = ". (int) $item['bobot'] ." WHERE id = ". (int) $item['id'] ."
+	                        UPDATE tb_bobot_lereng SET min_lereng = ". (float) $item['min'] .", maks_lereng = ". (float) $item['maks'] .", bobot = ". (float) $item['bobot'] ." WHERE id = ". (float) $item['id'] ."
 	                    ");
 
 	                    if (! $update) {
@@ -290,13 +290,13 @@ if (isset($_POST["submit"])) {
 						// save lereng
 	                    $tambah = mysqli_query($connect, "
 	                        INSERT INTO tb_bobot_lereng(`tanaman_id`, `min_lereng`, `maks_lereng`, `bobot`)
-	                            SELECT DISTINCT '{$tanaman_id}', '". (int) $item['min'] ."', '". (int) $item['maks'] ."', '". (int) $item['bobot'] ."'
+	                            SELECT DISTINCT '{$tanaman_id}', '". (float) $item['min'] ."', '". (float) $item['maks'] ."', '". (float) $item['bobot'] ."'
 	                            WHERE (
 	                                SELECT COUNT(*) FROM tb_bobot_lereng
 	                                WHERE
 	                                    tanaman_id = ". $tanaman_id ."
-										AND min_lereng = ". (int) $item['min'] ."
-										AND maks_lereng = ". (int) $item['maks'] ."
+										AND min_lereng = ". (float) $item['min'] ."
+										AND maks_lereng = ". (float) $item['maks'] ."
 	                            ) = 0
 	                    ");
 
@@ -328,7 +328,7 @@ if (isset($_POST["submit"])) {
 					if (isset($item['id'])) {
 						// update curah hujan
 	                    $update = mysqli_query($connect, "
-	                        UPDATE tb_bobot_curah_hujan SET min_curah = ". (int) $item['min'] .", maks_curah = ". (int) $item['maks'] .", bobot = ". (int) $item['bobot'] ." WHERE id = ". (int) $item['id'] ."
+	                        UPDATE tb_bobot_curah_hujan SET min_curah = ". (float) $item['min'] .", maks_curah = ". (float) $item['maks'] .", bobot = ". (float) $item['bobot'] ." WHERE id = ". (float) $item['id'] ."
 	                    ");
 
 	                    if (! $update) {
@@ -338,13 +338,13 @@ if (isset($_POST["submit"])) {
 						// save curah hujan
 	                    $tambah = mysqli_query($connect, "
 	                        INSERT INTO tb_bobot_curah_hujan(`tanaman_id`, `min_curah`, `maks_curah`, `bobot`)
-	                            SELECT DISTINCT '{$tanaman_id}', '". (int) $item['min'] ."', '". (int) $item['maks'] ."', '". (int) $item['bobot'] ."'
+	                            SELECT DISTINCT '{$tanaman_id}', '". (float) $item['min'] ."', '". (float) $item['maks'] ."', '". (float) $item['bobot'] ."'
 	                            WHERE (
 	                                SELECT COUNT(*) FROM tb_bobot_curah_hujan
 	                                WHERE
 	                                    tanaman_id = ". $tanaman_id ."
-										AND min_curah = ". (int) $item['min'] ."
-										AND maks_curah = ". (int) $item['maks'] ."
+										AND min_curah = ". (float) $item['min'] ."
+										AND maks_curah = ". (float) $item['maks'] ."
 	                            ) = 0
 	                    ");
 
