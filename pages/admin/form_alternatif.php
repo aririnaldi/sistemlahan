@@ -489,13 +489,8 @@ $(function(){
             rowElement = _.closest('.row'),
             formGroup = _.closest('.form-group');
 
-        if (!! rowElement.attr('data-id')) {
-            // data ada di database
-            console.log('ajax tekstur');
-        }else{
-            // data tidak ada di database
-            rowElement.remove();
-        }
+        // data tidak ada di database
+        rowElement.remove();
     });
 
     $(document).on('click', '.add-ph', function(e){
@@ -539,13 +534,8 @@ $(function(){
             rowElement = _.closest('.row'),
             formGroup = _.closest('.form-group');
 
-        if (!! rowElement.attr('data-id')) {
-            // data ada di database
-            console.log('ajax ph');
-        }else{
-            // data tidak ada di database
-            rowElement.remove();
-        }
+        // data tidak ada di database
+        rowElement.remove();
     });
 
     $(document).on('click', '.add-drainase', function(e){
@@ -588,13 +578,8 @@ $(function(){
             rowElement = _.closest('.row'),
             formGroup = _.closest('.form-group');
 
-        if (!! rowElement.attr('data-id')) {
-            // data ada di database
-            console.log('ajax drainase');
-        }else{
-            // data tidak ada di database
-            rowElement.remove();
-        }
+        // data tidak ada di database
+        rowElement.remove();
     });
 
     $(document).on('click', '.add-suhu', function(e){
@@ -638,13 +623,8 @@ $(function(){
             rowElement = _.closest('.row'),
             formGroup = _.closest('.form-group');
 
-        if (!! rowElement.attr('data-id')) {
-            // data ada di database
-            console.log('ajax suhu');
-        }else{
-            // data tidak ada di database
-            rowElement.remove();
-        }
+        // data tidak ada di database
+        rowElement.remove();
     });
 
     $(document).on('click', '.add-ketinggian', function(e){
@@ -688,13 +668,8 @@ $(function(){
             rowElement = _.closest('.row'),
             formGroup = _.closest('.form-group');
 
-        if (!! rowElement.attr('data-id')) {
-            // data ada di database
-            console.log('ajax ketinggian');
-        }else{
-            // data tidak ada di database
-            rowElement.remove();
-        }
+        // data tidak ada di database
+        rowElement.remove();
     });
 
     $(document).on('click', '.add-lereng', function(e){
@@ -738,13 +713,8 @@ $(function(){
             rowElement = _.closest('.row'),
             formGroup = _.closest('.form-group');
 
-        if (!! rowElement.attr('data-id')) {
-            // data ada di database
-            console.log('ajax lereng');
-        }else{
-            // data tidak ada di database
-            rowElement.remove();
-        }
+        // data tidak ada di database
+        rowElement.remove();
     });
 
     $(document).on('click', '.add-hujan', function(e){
@@ -788,13 +758,8 @@ $(function(){
             rowElement = _.closest('.row'),
             formGroup = _.closest('.form-group');
 
-        if (!! rowElement.attr('data-id')) {
-            // data ada di database
-            console.log('ajax hujan');
-        }else{
-            // data tidak ada di database
-            rowElement.remove();
-        }
+        // data tidak ada di database
+        rowElement.remove();
     });
 });
 

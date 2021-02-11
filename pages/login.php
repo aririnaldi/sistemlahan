@@ -36,12 +36,20 @@ if(isset($_POST['submit'])){
     	";
     }
 }
+
+if(isset($_SESSION['username']) && isset($_SESSION['password'])){
+	echo "
+		<script>
+			document.location='admin.php';
+		</script>
+	";
+}
 ?>
 
 
 <br><br><br>
 <div class="row">
-    <div class="col-md-5 col-md-offset-3">
+    <div class="col-md-6 col-md-offset-3">
         <div class="login-box">
             <div class="card">
                 <div class="header text-center">
