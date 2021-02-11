@@ -20,7 +20,7 @@ if (isset($_POST["submit"])) {
 				if (! empty($array_id)) {
 					// delete tekstur
 					$delete = mysqli_query($connect, "
-						DELETE FROM tb_bobot_tekstur WHERE id NOT IN (". implode($array_id, ',') .")
+						DELETE FROM tb_bobot_tekstur WHERE id NOT IN (". implode($array_id, ',') .") AND tanaman_id = {$tanaman_id}
 					");
 
 					if (! $delete) {
@@ -69,7 +69,7 @@ if (isset($_POST["submit"])) {
 				if (! empty($array_id)) {
 					// delete tekstur
 					$delete = mysqli_query($connect, "
-						DELETE FROM tb_bobot_ph WHERE id NOT IN (". implode($array_id, ',') .")
+						DELETE FROM tb_bobot_ph WHERE id NOT IN (". implode($array_id, ',') .") AND tanaman_id = {$tanaman_id}
 					");
 
 					if (! $delete) {
@@ -119,7 +119,7 @@ if (isset($_POST["submit"])) {
 				if (! empty($array_id)) {
 					// delete tekstur
 					$delete = mysqli_query($connect, "
-						DELETE FROM tb_bobot_drainase WHERE id NOT IN (". implode($array_id, ',') .")
+						DELETE FROM tb_bobot_drainase WHERE id NOT IN (". implode($array_id, ',') .") AND tanaman_id = {$tanaman_id}
 					");
 
 					if (! $delete) {
@@ -168,7 +168,7 @@ if (isset($_POST["submit"])) {
 				if (! empty($array_id)) {
 					// delete tekstur
 					$delete = mysqli_query($connect, "
-						DELETE FROM tb_bobot_suhu WHERE id NOT IN (". implode($array_id, ',') .")
+						DELETE FROM tb_bobot_suhu WHERE id NOT IN (". implode($array_id, ',') .") AND tanaman_id = {$tanaman_id}
 					");
 
 					if (! $delete) {
@@ -216,7 +216,7 @@ if (isset($_POST["submit"])) {
 				if (! empty($array_id)) {
 					// delete tekstur
 					$delete = mysqli_query($connect, "
-						DELETE FROM tb_bobot_tinggi_lahan WHERE id NOT IN (". implode($array_id, ',') .")
+						DELETE FROM tb_bobot_tinggi_lahan WHERE id NOT IN (". implode($array_id, ',') .") AND tanaman_id = {$tanaman_id}
 					");
 
 					if (! $delete) {
@@ -264,7 +264,7 @@ if (isset($_POST["submit"])) {
 				if (! empty($array_id)) {
 					// delete tekstur
 					$delete = mysqli_query($connect, "
-						DELETE FROM tb_bobot_lereng WHERE id NOT IN (". implode($array_id, ',') .")
+						DELETE FROM tb_bobot_lereng WHERE id NOT IN (". implode($array_id, ',') .") AND tanaman_id = {$tanaman_id}
 					");
 
 					if (! $delete) {
@@ -312,7 +312,7 @@ if (isset($_POST["submit"])) {
 				if (! empty($array_id)) {
 					// delete tekstur
 					$delete = mysqli_query($connect, "
-						DELETE FROM tb_bobot_curah_hujan WHERE id NOT IN (". implode($array_id, ',') .")
+						DELETE FROM tb_bobot_curah_hujan WHERE id NOT IN (". implode($array_id, ',') .") AND tanaman_id = {$tanaman_id}
 					");
 
 					if (! $delete) {
