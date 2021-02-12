@@ -17,6 +17,7 @@ class pusatdata{
         $rank = [];
         $max_net_flow = 0;
         $sql = mysqli_query($connect, "SELECT * FROM tb_tanaman");
+        $jumlah_alternatif = mysqli_num_rows($sql);
         while ($item = mysqli_fetch_assoc($sql)) {
             $tanaman_id = (int) $item['id'];
             $query = "
@@ -95,41 +96,43 @@ class pusatdata{
             ];
         }
 
+        // $this->dd($temp_hasil_lengkap);
+
         $temp_hasil_akhir = [];
         if (! empty($temp_hasil_angka)) {
             $temp_calculate = [];
-            foreach ($temp_hasil_angka as $key => $item) {
-                // echo "<pre>". print_r($item, true) ."</pre>";
-                // die();
+            // $this->dd($temp_hasil_angka);
 
-                // calculate leaving
+            $temp_preferensi = [];
+            for ($i=0; $i < $jumlah_alternatif; $i++) {
                 $temp_flow = [];
-                foreach ($item as $l_1 => $v_1) {
+                for ($j=0; $j < 7; $j++) {
                     $temp_ = [];
-                    foreach ($item as $l_2 => $v_2) {
-                        if ($l_1 != $l_2) {
-                            $temp_[] = ($v_1 - $v_2) < 0 ? 0 : $v_1 - $v_2;
-                            // $temp_[] = $l_1 . " - " . $l_2;
-                        }
+                    for ($k=0; $k < $jumlah_alternatif; $k++) {
+                        $temp_[]  = ($temp_hasil_angka[$i][$j] - $temp_hasil_angka[$k][$j] <= 0) ? 0 : 1;
+                        // $temp_[] = $temp_hasil_angka[$i][$j] . " - " . $temp_hasil_angka[$k][$j];
                     }
 
-                    $temp_flow[$l_1] = array_sum($temp_);
-                    // $temp_flow[$l_1] = $temp_;
+                    $temp_flow[] = $temp_;
                 }
 
-                $temp_calculate[] = $temp_flow;
-
-                // echo "<pre>". print_r($temp_calculate, true) ."</pre>";
-                // die();
+                for ($z=0; $z < $jumlah_alternatif; $z++) {
+                    $temp_preferensi[$i][] = round(array_sum(array_column($temp_flow, $z)) / 7, 2);
+                }
             }
 
-            foreach ($temp_calculate as $key => $item) {
+            foreach ($temp_preferensi as $key => $item) {
                 $temp_hasil_akhir[$key]['id'] = $temp_hasil_lengkap[$key]['id'];
                 $temp_hasil_akhir[$key]['tanaman'] = $temp_hasil_lengkap[$key]['nama'];
                 $temp_hasil_akhir[$key]['leaving'] = round(array_sum($item) / (count($item) - 1), 2);
-                $temp_hasil_akhir[$key]['entering'] = round(array_sum(array_column($temp_calculate, $key)) / (count($item) - 1), 2);
+                $temp_hasil_akhir[$key]['entering'] = round(array_sum(array_column($temp_preferensi, $key)) / (count($item) - 1), 2);
                 $temp_hasil_akhir[$key]['net'] = $temp_hasil_akhir[$key]['leaving'] - $temp_hasil_akhir[$key]['entering'];
+
+                // $this->dd($temp_hasil_akhir);
             }
+
+            // $this->dd($temp_preferensi);
+            // $this->dd($temp_hasil_akhir);
         }
 
         return $temp_hasil_akhir;
