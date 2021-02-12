@@ -7,7 +7,7 @@ class pusatdata{
     }
 
     function pilihanDrainase(){
-        return ["Cepat", "Agak Cepat", "Baik", "Agak Baik", "Agak Terhambat", "Terhambat", "Sangat Terhambat"];
+        return ["Cepat", "Agak Cepat", "Baik", "Sedang", "Agak Terhambat", "Terhambat", "Sangat Terhambat","Sangat Cepat"];
     }
 
     function getCalculate($connect, $data){
