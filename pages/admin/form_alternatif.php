@@ -384,10 +384,11 @@
         <label for="hujan">Pembobotan Curah Hujan</label>
         <?php if (isset($array_hujan) && ! empty($array_hujan)): ?>
             <?php foreach ($array_hujan as $key => $item): ?>
-                <input type="hidden" name="hujan[<?= $key ?>][id]" value="<?= $item['id'] ?>" required>
+          
                 <div class="row" data-id="<?= $item['id'] ?>">
                     <div class="col-xs-4">
                         <div class="form-line">
+                            <input type="hidden" name="hujan[<?= $key ?>][id]" value="<?= $item['id'] ?>" required>
                             <input type="number" step="any" min="0" class="form-control" name="hujan[<?= $key ?>][min]" placeholder="Masukan Curah Hujan Minimum" value="<?= $item['min_curah'] ?>" required>
                         </div>
                     </div>

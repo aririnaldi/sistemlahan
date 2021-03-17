@@ -4,7 +4,7 @@ if (isset($_POST["id"])) {
     // save tekstur
     $hapus = mysqli_query($connect, "DELETE FROM tb_tanaman WHERE id = " . $_POST["id"]);
 
-    if (!$hapus) {
+    if ($hapus) {
         $continue = true;
     }
 }
