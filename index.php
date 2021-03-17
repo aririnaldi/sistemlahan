@@ -33,7 +33,7 @@ $pusatdata = new pusatdata;
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-	<div class="container m-t-20">
+	<div class="container m-t-100">
 		<?php include "buka-halaman.php"; ?>
 	</div>
 

@@ -1,5 +1,9 @@
 <?php
+
 $data = $_POST;
+
+// $data = mysqli_fetch_assoc($sql_lahan);
+
 $temp_hasil_akhir = $pusatdata->getCalculate($connect, $data);
 $rank = $pusatdata->getRankCalculation($temp_hasil_akhir);
 
@@ -60,103 +64,28 @@ $rank = $pusatdata->getRankCalculation($temp_hasil_akhir);
 							<th class="text-center">Curah Hujan</th>
 						</tr>
 					</thead>
-					<tbody>
-					<?php
+										<tbody>
+						<?php 
 
-					$no = 1;
-					$sql = mysqli_query($connect, "SELECT * FROM tb_tanaman");
-					if (mysqli_num_rows($sql) > 0) {
-						while ($item = mysqli_fetch_assoc($sql)) {
+						foreach ($temp_hasil_akhir as $key => $item) {
 							?>
 
-							<tr>
-								<td><?= $no++ ?></td>
-								<td><?= $item['nama'] ?></td>
-								<td>
-									<?php
-									// ambil data tekstur
-									$query = mysqli_query($connect, "SELECT * FROM tb_bobot_tekstur WHERE tanaman_id = {$item['id']}");
-									while ($tekstur = mysqli_fetch_assoc($query)) {
-										echo "<div>". $tekstur['nama'] ." (". $tekstur['bobot'] .")</div>";
-									}
-
-									?>
-								</td>
-								<td>
-									<?php
-									// ambil data ph
-									$query = mysqli_query($connect, "SELECT * FROM tb_bobot_ph WHERE tanaman_id = {$item['id']}");
-									while ($ph = mysqli_fetch_assoc($query)) {
-										echo "<div>". $ph['min_ph'] ." - ". $ph['maks_ph'] ." (". $ph['bobot'] .")</div>";
-									}
-
-									?>
-								</td>
-								<td>
-									<?php
-									// ambil data drainase
-									$query = mysqli_query($connect, "SELECT * FROM tb_bobot_drainase WHERE tanaman_id = {$item['id']}");
-									while ($drainase = mysqli_fetch_assoc($query)) {
-										echo "<div>". $drainase['nama'] ." (". $drainase['bobot'] .")</div>";
-									}
-
-									?>
-								</td>
-								<td>
-									<?php
-									// ambil data suhu
-									$query = mysqli_query($connect, "SELECT * FROM tb_bobot_suhu WHERE tanaman_id = {$item['id']}");
-									while ($suhu = mysqli_fetch_assoc($query)) {
-										echo "<div>". $suhu['min_suhu'] ." - ". $suhu['maks_suhu'] ." (". $suhu['bobot'] .")</div>";
-									}
-
-									?>
-								</td>
-								<td>
-									<?php
-									// ambil data ketinggian
-									$query = mysqli_query($connect, "SELECT * FROM tb_bobot_tinggi_lahan WHERE tanaman_id = {$item['id']}");
-									while ($ketinggian = mysqli_fetch_assoc($query)) {
-										echo "<div>". $ketinggian['min_tinggi'] ." - ". $ketinggian['maks_tinggi'] ." (". $ketinggian['bobot'] .")</div>";
-									}
-
-									?>
-								</td>
-								<td>
-									<?php
-									// ambil data lereng
-									$query = mysqli_query($connect, "SELECT * FROM tb_bobot_lereng WHERE tanaman_id = {$item['id']}");
-									while ($lereng = mysqli_fetch_assoc($query)) {
-										echo "<div>". $lereng['min_lereng'] ." - ". $lereng['maks_lereng'] ." (". $lereng['bobot'] .")</div>";
-									}
-
-									?>
-								</td>
-								<td>
-									<?php
-									// ambil data curah hujan
-									$query = mysqli_query($connect, "SELECT * FROM tb_bobot_curah_hujan WHERE tanaman_id = {$item['id']}");
-									while ($hujan = mysqli_fetch_assoc($query)) {
-										echo "<div>". $hujan['min_curah'] ." - ". $hujan['maks_curah'] ." (". $hujan['bobot'] .")</div>";
-									}
-
-									?>
-								</td>
+							<tr data-id="<?= $item['id'] ?>">
+								<td><?= $key+1 ?></td>
+								<td><?= $item['tanaman'] ?></td>
+								<td><?= $item['bobot_tekstur'] ?></td>
+								<td><?= $item['bobot_ph'] ?></td>
+								<td><?= $item['bobot_drainase'] ?></td>
+								<td><?= $item['bobot_suhu'] ?></td>
+								<td><?= $item['bobot_tinggi_lahan'] ?></td>
+								<td><?= $item['bobot_lereng'] ?></td>
+								<td><?= $item['bobot_curah_hujan'] ?></td>
 							</tr>
 
 							<?php
 						}
-					}else{
+
 						?>
-
-						<tr>
-							<td colspan="10" class="text-center">Data tidak tersedia</td>
-						</tr>
-
-						<?php
-					}
-
-					?>
 					</tbody>
 					<tfoot>
 						<tr>

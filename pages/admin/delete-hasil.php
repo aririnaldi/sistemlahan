@@ -1,6 +1,5 @@
 <?php
 include "koneksi.php";
-$detail = $_POST['detail'];
 $hapus = $_POST['hapus'];
 
 $id = $_GET['id_hasil'];

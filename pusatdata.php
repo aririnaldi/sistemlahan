@@ -96,12 +96,12 @@ class pusatdata{
             ];
         }
 
-        // $this->dd($temp_hasil_lengkap);
+      // $this->dd($temp_hasil_lengkap);
 
         $temp_hasil_akhir = [];
         if (! empty($temp_hasil_angka)) {
             $temp_calculate = [];
-            // $this->dd($temp_hasil_angka);
+            //$this->dd($temp_hasil_angka);
 
             $temp_preferensi = [];
             for ($i=0; $i < $jumlah_alternatif; $i++) {
@@ -117,7 +117,7 @@ class pusatdata{
                 }
 
                 for ($z=0; $z < $jumlah_alternatif; $z++) {
-                    $temp_preferensi[$i][] = round(array_sum(array_column($temp_flow, $z)) / 7, 2);
+                    $temp_preferensi[$i][] = array_sum(array_column($temp_flow, $z)) / 7;
                 }
             }
 
@@ -128,6 +128,16 @@ class pusatdata{
                 $temp_hasil_akhir[$key]['entering'] = round(array_sum(array_column($temp_preferensi, $key)) / (count($item) - 1), 2);
                 $temp_hasil_akhir[$key]['net'] = $temp_hasil_akhir[$key]['leaving'] - $temp_hasil_akhir[$key]['entering'];
 
+                //INI BUAT NAMPILI BOBOT COY
+
+                $temp_hasil_akhir[$key]['bobot_tekstur'] = $temp_hasil_lengkap[$key]['bobot_tekstur'];
+                $temp_hasil_akhir[$key]['bobot_ph'] = $temp_hasil_lengkap[$key]['bobot_ph'];
+                $temp_hasil_akhir[$key]['bobot_suhu'] = $temp_hasil_lengkap[$key]['bobot_suhu'];
+                $temp_hasil_akhir[$key]['bobot_drainase'] = $temp_hasil_lengkap[$key]['bobot_drainase'];
+                $temp_hasil_akhir[$key]['bobot_lereng'] = $temp_hasil_lengkap[$key]['bobot_lereng'];
+                $temp_hasil_akhir[$key]['bobot_tinggi_lahan'] = $temp_hasil_lengkap[$key]['bobot_tinggi_lahan'];
+                $temp_hasil_akhir[$key]['bobot_curah_hujan'] = $temp_hasil_lengkap[$key]['bobot_curah_hujan'];
+
                 // $this->dd($temp_hasil_akhir);
             }
 
@@ -136,6 +146,8 @@ class pusatdata{
         }
 
         return $temp_hasil_akhir;
+
+
     }
 
     public function getRankCalculation($data){

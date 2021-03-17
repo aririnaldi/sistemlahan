@@ -4,10 +4,10 @@ $id = (int) $_GET['id'];
 $sql_lahan = mysqli_query($connect,"SELECT * FROM tb_lahan WHERE id_alamat='$id' " );
 if (mysqli_num_rows($sql_lahan) == 0) {
 	echo "
-		<script>
-			alert('Data tidak tersedia');
-			document.location.href='?page=lahan'
-		</script>
+	<script>
+	alert('Data tidak tersedia');
+	document.location.href='?page=lahan'
+	</script>
 	";
 	die();
 }
@@ -18,6 +18,38 @@ $rank = $pusatdata->getRankCalculation($temp_hasil_akhir);
 
 // echo "<pre>". print_r($temp_hasil_akhir, true) ."</pre>";
 // die();
+
+?>
+
+<?php 
+
+if (isset($_POST['submit_input_hasil'])) {
+
+	if(!empty($_POST['inputan_tanaman'][0])) {
+		$tanamannya = "";
+		foreach ($_POST['inputan_tanaman'] as $isi_tanaman) {
+			$tanamannya = $tanamannya.$isi_tanaman.",";
+		}
+		$tanamannya = substr($tanamannya, 0,-1);
+	}else{
+		$tanamannya = "";
+	}
+
+	if(!empty($_POST['inputan_net'][0])) {
+		$netnya = "";
+		foreach ($_POST['inputan_net'] as $isi_net) {
+			$netnya = $netnya.$isi_net.",";
+		}
+		$netnya = substr($netnya, 0,-1);
+	}else{
+		$netnya = "";
+	}
+
+	$input_hasil = mysqli_query($connect,"INSERT INTO tb_hasil VALUES('','$_POST[inputan_alamat]','$netnya','$tanamannya')");
+	if ($input_hasil) {
+		echo "<script> alert('Berhasil menginputkan hasil'); </script>";
+	}
+}
 
 ?>
 
@@ -73,104 +105,31 @@ $rank = $pusatdata->getRankCalculation($temp_hasil_akhir);
 							<th class="text-center">Curah Hujan</th>
 						</tr>
 					</thead>
+					
 					<tbody>
-					<?php
+						<?php 
 
-					$no = 1;
-					$sql = mysqli_query($connect, "SELECT * FROM tb_tanaman");
-					if (mysqli_num_rows($sql) > 0) {
-						while ($item = mysqli_fetch_assoc($sql)) {
+						foreach ($temp_hasil_akhir as $key => $item) {
 							?>
 
-							<tr>
-								<td><?= $no++ ?></td>
-								<td><?= $item['nama'] ?></td>
-								<td>
-									<?php
-									// ambil data tekstur
-									$query = mysqli_query($connect, "SELECT * FROM tb_bobot_tekstur WHERE tanaman_id = {$item['id']}");
-									while ($tekstur = mysqli_fetch_assoc($query)) {
-										echo "<div>". $tekstur['nama'] ." (". $tekstur['bobot'] .")</div>";
-									}
-
-									?>
-								</td>
-								<td>
-									<?php
-									// ambil data ph
-									$query = mysqli_query($connect, "SELECT * FROM tb_bobot_ph WHERE tanaman_id = {$item['id']}");
-									while ($ph = mysqli_fetch_assoc($query)) {
-										echo "<div>". $ph['min_ph'] ." - ". $ph['maks_ph'] ." (". $ph['bobot'] .")</div>";
-									}
-
-									?>
-								</td>
-								<td>
-									<?php
-									// ambil data drainase
-									$query = mysqli_query($connect, "SELECT * FROM tb_bobot_drainase WHERE tanaman_id = {$item['id']}");
-									while ($drainase = mysqli_fetch_assoc($query)) {
-										echo "<div>". $drainase['nama'] ." (". $drainase['bobot'] .")</div>";
-									}
-
-									?>
-								</td>
-								<td>
-									<?php
-									// ambil data suhu
-									$query = mysqli_query($connect, "SELECT * FROM tb_bobot_suhu WHERE tanaman_id = {$item['id']}");
-									while ($suhu = mysqli_fetch_assoc($query)) {
-										echo "<div>". $suhu['min_suhu'] ." - ". $suhu['maks_suhu'] ." (". $suhu['bobot'] .")</div>";
-									}
-
-									?>
-								</td>
-								<td>
-									<?php
-									// ambil data ketinggian
-									$query = mysqli_query($connect, "SELECT * FROM tb_bobot_tinggi_lahan WHERE tanaman_id = {$item['id']}");
-									while ($ketinggian = mysqli_fetch_assoc($query)) {
-										echo "<div>". $ketinggian['min_tinggi'] ." - ". $ketinggian['maks_tinggi'] ." (". $ketinggian['bobot'] .")</div>";
-									}
-
-									?>
-								</td>
-								<td>
-									<?php
-									// ambil data lereng
-									$query = mysqli_query($connect, "SELECT * FROM tb_bobot_lereng WHERE tanaman_id = {$item['id']}");
-									while ($lereng = mysqli_fetch_assoc($query)) {
-										echo "<div>". $lereng['min_lereng'] ." - ". $lereng['maks_lereng'] ." (". $lereng['bobot'] .")</div>";
-									}
-
-									?>
-								</td>
-								<td>
-									<?php
-									// ambil data curah hujan
-									$query = mysqli_query($connect, "SELECT * FROM tb_bobot_curah_hujan WHERE tanaman_id = {$item['id']}");
-									while ($hujan = mysqli_fetch_assoc($query)) {
-										echo "<div>". $hujan['min_curah'] ." - ". $hujan['maks_curah'] ." (". $hujan['bobot'] .")</div>";
-									}
-
-									?>
-								</td>
+							<tr data-id="<?= $item['id'] ?>">
+								<td><?= $key+1 ?></td>
+								<td><?= $item['tanaman'] ?></td>
+								<td><?= $item['bobot_tekstur'] ?></td>
+								<td><?= $item['bobot_ph'] ?></td>
+								<td><?= $item['bobot_drainase'] ?></td>
+								<td><?= $item['bobot_suhu'] ?></td>
+								<td><?= $item['bobot_tinggi_lahan'] ?></td>
+								<td><?= $item['bobot_lereng'] ?></td>
+								<td><?= $item['bobot_curah_hujan'] ?></td>
 							</tr>
 
 							<?php
 						}
-					}else{
+
 						?>
-
-						<tr>
-							<td colspan="10" class="text-center">Data tidak tersedia</td>
-						</tr>
-
-						<?php
-					}
-
-					?>
 					</tbody>
+					
 					<tfoot>
 						<tr>
 							<td colspan="5" class="text-center">Keterangan bobot </td>
@@ -200,14 +159,14 @@ $rank = $pusatdata->getRankCalculation($temp_hasil_akhir);
 							</thead>
 							<tbody>
 								<?php if (isset($temp_hasil_akhir) && ! empty($temp_hasil_akhir)): ?>
-									<?php foreach ($temp_hasil_akhir as $key => $item): ?>
-										<tr data-id="<?= $item['id'] ?>">
-											<td><?= $item['tanaman'] ?></td>
-											<td><?= $item['leaving'] ?></td>
-											<td><?= $item['entering'] ?></td>
-											<td><?= $item['net'] ?></td>
-										</tr>
-									<?php endforeach; ?>
+								<?php foreach ($temp_hasil_akhir as $key => $item): ?>
+									<tr data-id="<?= $item['id'] ?>">
+										<td><?= $item['tanaman'] ?></td>
+										<td><?= $item['leaving'] ?></td>
+										<td><?= $item['entering'] ?></td>
+										<td><?= $item['net'] ?></td>
+									</tr>
+								<?php endforeach; ?>
 								<?php else: ?>
 									<tr>
 										<td colspan="4" class="text-center">Data tidak tersedia</td>
@@ -218,38 +177,78 @@ $rank = $pusatdata->getRankCalculation($temp_hasil_akhir);
 					</div>
 
 					<div class="col-lg-6">
-						<table class="table table-bordered">
-							<thead>
-								<tr>
-									<th colspan="3" class="text-center">HASIL MENURUT NILAI TERTINGGI</th>
-								</tr>
-								<tr>
-									<th class="text-center">Alamat</th>
-									<th class="text-center">Jenis Tanaman</th>
-									<th class="text-center">Nilai Net Flow</th>
-								</tr>
-							</thead>
-							<tbody>
-								<?php if (isset($rank) && ! empty($rank)): ?>
+
+						<form method="POST">
+							
+							<table class="table table-bordered">
+								<thead>
 									<tr>
-										<td rowspan="<?= count($rank) + 1 ?>" class="text-center"><?= $data['alamat'] ?></td>
+										<th colspan="3" class="text-center">HASIL MENURUT NILAI TERTINGGI</th>
+									</tr>
+									<tr>
+										<th class="text-center">Alamat</th>
+										<th class="text-center">Jenis Tanaman</th>
+										<th class="text-center">Nilai Net Flow</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php if (isset($rank) && ! empty($rank)): ?>
+									<tr>
+										<td rowspan="<?= count($rank) + 1 ?>" class="text-center">
+											<?= $data['alamat'] ?>
+											<input type="hidden" name="inputan_alamat" value="<?= $data['id_alamat'] ?>">
+										</td>
 									</tr>
 
 									<?php foreach ($rank as $key => $item): ?>
 										<tr>
-											<td class="text-center"><?= $item['tanaman'] ?></td>
-											<td class="text-center"><?= $item['net'] ?></td>
+											<td class="text-center">
+												<?= $item['tanaman'] ?>
+												<input type="hidden" name="inputan_tanaman[]" value="<?= $item['tanaman'] ?>">
+											</td>
+											<td class="text-center">
+												<?= $item['net'] ?>
+												<input type="hidden" name="inputan_net[]" value="<?= $item['net'] ?>">
+											</td>
 										</tr>
 									<?php endforeach; ?>
-								<?php else: ?>
-									<tr>
-										<td colspan="3" class="text-center">Data tidak tersedia</td>
-									</tr>
-								<?php endif; ?>
+									<?php else: ?>
+										<tr>
+											<td colspan="3" class="text-center">Data tidak tersedia</td>
+										</tr>
+									<?php endif; ?>
 
-							</tbody>
-						</table>
+								</tbody>
+							</table>
+
+							<br>
+
+							<div class="text-center">
+
+								<?php 
+
+								$sql_hasil = mysqli_query($connect,"SELECT * FROM tb_hasil WHERE id_alamat='$data[id_alamat]' " );
+								$data_hasil = mysqli_fetch_assoc($sql_hasil);
+
+								if ($data_hasil!="") {
+									?>
+									<a href="?page=rekap"><button type="button" class="btn btn-warning"> Lihat Hasil </button></a>
+									<?php
+								}else{
+									?>
+									<input type="submit" name="submit_input_hasil" class="btn btn-primary" value="Input Hasil">
+									<?php
+								}
+								
+								?>
+
+								<a href="?page=lahan" class="btn btn-danger"> Batal </a>
+
+							</div>
+
+						</form>
 					</div>
+
 				</div>
 			</div>
 			<br><br>
