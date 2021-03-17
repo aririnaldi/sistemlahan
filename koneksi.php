@@ -4,7 +4,7 @@ $user = "root";
 $password = "dicki";
 $database = "lahan2";
 
-$connect = mysqli_connect($host, $user,'', $database);
+$connect = mysqli_connect($host, $user,$password, $database);
 if(! $connect){
 	die("Acces denied.</br>");
 }

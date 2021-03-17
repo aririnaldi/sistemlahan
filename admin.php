@@ -73,7 +73,9 @@ if(!isset($_SESSION['username']) && !isset($_SESSION['password'])){
 	</section>
 
 	<!-- Bootstrap Core Js -->
+	<script src="plugins/jquery/jquery.js"></script>
 	<script src="plugins/bootstrap/js/bootstrap.js"></script>
+	<script src="plugins/jquery-datatable/jquery.dataTables.js"></script>	
 
 	<!-- Slimscroll Plugin Js -->
 	<script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
